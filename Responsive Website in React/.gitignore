@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+.claude-replay.*
+.tmp-*
+
+# Env
+.env*
+
+# TypeScript
+*.tsbuildinfo
+
+# Cache
+.cache/

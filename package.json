@@ -1,0 +1,10 @@
+{
+  "name": "oshodi-david-portfolio-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix \"Responsive Website in React\" run dev",
+    "build": "npm --prefix \"Responsive Website in React\" run build",
+    "start": "npm --prefix \"Responsive Website in React\" run start",
+    "format": "npm --prefix \"Responsive Website in React\" run format"
+  }
+}
