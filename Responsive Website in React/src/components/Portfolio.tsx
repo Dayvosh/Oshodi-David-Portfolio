@@ -1,13 +1,25 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import gsap from 'gsap'
+import Link from 'next/link'
+import { useEffect, useState, type ReactNode } from 'react'
+import BankingShowcase from './BankingShowcase'
+import Footer from './Footer'
+import Icon from './Icon'
+import TpayPreview from './TpayPreview'
+import TruckPreview from './TruckPreview'
 
 const A = '/assets'
 
-const bankingScreens = ['1.svg', '2.svg', '3.svg']
+type Project = {
+  title: string
+  year: string
+  category: string
+  description: string
+  theme: string
+  href?: string
+}
 
-const projects = [
+const projects: Project[] = [
   {
     title: 'ALATbyWEMA',
     year: '2025',
@@ -15,6 +27,7 @@ const projects = [
     description:
       'Reimagining payments to make everyday banking simpler, faster, and more trustworthy',
     theme: 'banking',
+    href: '/work/alatbywema',
   },
   {
     title: 'Truck App',
@@ -42,15 +55,11 @@ const projects = [
   },
 ]
 
-function Icon({ file, alt = '' }: { file: string; alt?: string }) {
-  return <img src={`${A}/${file}`} alt={alt} />
-}
-
 function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
       <a className="portrait" href="#top" aria-label="Back to top">
-        <img src={`${A}/aaaa3.png`} alt="Oshodi David" />
+        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
       </a>
       <nav>
         <a className="active" href="#work">
@@ -74,7 +83,7 @@ function MobileHeader() {
   return (
     <header className="mobile-header">
       <a className="portrait" href="#top" aria-label="Back to top">
-        <img src={`${A}/aaaa3.png`} alt="Oshodi David" />
+        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
       </a>
       <a className="email-button compact" href="mailto:davidoshodi656@gmail.com">
         <Icon file="e53f1.svg" />
@@ -147,8 +156,7 @@ function Hero() {
           <span>INTERACTION<br />DESIGN</span>
         </div>
         <div className="sticker human">
-          <Icon file="7ce80.svg" />
-          <span>HUMAN<br />CENTERED<br />DESIGN</span>
+          <img src={`${A}/HCD.svg`} alt="Human Centered Design" />
         </div>
       </div>
       <div className="hero-copy">
@@ -181,138 +189,10 @@ function PhoneShell({ children }: { children: ReactNode }) {
   )
 }
 
-function TruckPreview() {
-  return (
-    <PhoneShell>
-      <div className="truck-art">
-        <div className="sky" />
-        <div className="truck">
-          <div className="trailer" />
-          <div className="cab" />
-          <i />
-          <i />
-        </div>
-      </div>
-      <div className="mini-content">
-        <b>Welcome, David</b>
-        <span>Complete your delivery route</span>
-        <div className="progress"><i /></div>
-        <button>View today’s tasks</button>
-      </div>
-    </PhoneShell>
-  )
-}
-
-function TpayPreview() {
-  return (
-    <div className="browser tpay-browser" aria-hidden="true">
-      <div className="browser-top"><i /><i /><i /><span /></div>
-      <div className="dashboard">
-        <div className="dashboard-nav">
-          <b>TPay</b>
-          {['Dashboard', 'Transactions', 'Wallets', 'Customers', 'Settings'].map(
-            (item) => <span key={item}>{item}</span>,
-          )}
-        </div>
-        <div className="dashboard-main">
-          <div className="dashboard-heading"><b>Transactions</b><button>New payment</button></div>
-          <div className="stat-row"><i /><i /><i /></div>
-          <div className="chart"><div /><div /><div /><div /><div /></div>
-          <div className="table-lines">{Array.from({ length: 5 }, (_, i) => <i key={i} />)}</div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function ThrPreview() {
-  const boxes = [
-    '#fbd69d', '#a0d9de', '#99c586',
-    '#f2918c', '#facd8a', '#a0d9de',
-    '#d22d2d', '#f2918c', '#facd8a',
-  ]
   return (
-    <div className="browser thr-browser" aria-hidden="true">
-      <div className="browser-top"><i /><i /><i /><span /></div>
-      <div className="dashboard">
-        <div className="dashboard-nav">
-          <b>THR</b>
-          {['Dashboard', 'Employees', 'Attendance', 'Approvals', 'Performance'].map(
-            (item) => <span key={item}>{item}</span>,
-          )}
-        </div>
-        <div className="dashboard-main">
-          <div className="dashboard-heading"><b>Performance management</b><button>Appraise</button></div>
-          <div className="stat-row"><i /><i /><i /></div>
-          <p className="matrix-title">9 Box Matrix (Potential - Performance)</p>
-          <div className="matrix">{boxes.map((color, i) => <i key={i} style={{ background: color }} />)}</div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function BankingShowcase() {
-  const phoneRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const phone = phoneRef.current
-    if (!phone) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const screens = gsap.utils.toArray<HTMLImageElement>('.banking-screen', phone)
-    if (screens.length < 2) return
-
-    const ctx = gsap.context(() => {
-      let zIndex = 1
-      gsap.set(screens, {
-        xPercent: (i) => (i === 0 ? 0 : 100),
-        zIndex: (i) => i + 1,
-      })
-      zIndex = screens.length + 1
-
-      const hold = 2.4
-      const tl = gsap.timeline({
-        repeat: -1,
-        defaults: { duration: 1, ease: 'power3.inOut' },
-      })
-
-      for (let i = 1; i < screens.length; i += 1) {
-        tl.set(screens[i], { zIndex: zIndex++ }, `+=${hold}`)
-        tl.to(screens[i - 1], { xPercent: -100 }, '<')
-        tl.to(screens[i], { xPercent: 0 }, '<')
-      }
-
-      tl.set(screens[0], { xPercent: 100, zIndex: zIndex++ }, `+=${hold}`)
-      tl.to(screens[screens.length - 1], { xPercent: -100 }, '<')
-      tl.to(screens[0], { xPercent: 0 }, '<')
-      tl.set(screens.slice(1), { xPercent: 100 })
-    }, phone)
-
-    return () => ctx.revert()
-  }, [])
-
-  return (
-    <div className="project-visual banking">
-      <div className="banking-phone" ref={phoneRef} aria-hidden="true">
-        <img className="banking-frame" src={`${A}/Iphone.svg`} alt="" draggable={false} />
-        <div className="banking-screen-window">
-          {bankingScreens.map((file, index) => (
-            <img
-              key={file}
-              className="banking-screen"
-              src={`${A}/${file}`}
-              alt=""
-              draggable={false}
-              style={{
-                zIndex: index + 1,
-                transform: index === 0 ? 'translateX(0%)' : 'translateX(100%)',
-              }}
-            />
-          ))}
-          <span className="banking-island" />
-        </div>
-      </div>
+    <div className="thr-image-wrap" aria-hidden="true">
+      <img src={`${A}/THR.svg`} alt="" draggable={false} />
     </div>
   )
 }
@@ -330,8 +210,8 @@ function ProjectVisual({ theme }: { theme: string }) {
   return <div className="project-visual thr-theme"><ThrPreview /></div>
 }
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
-  return (
+function ProjectCard({ project }: { project: Project }) {
+  const card = (
     <article className="project-card">
       <ProjectVisual theme={project.theme} />
       <div className="project-copy">
@@ -347,6 +227,16 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       </div>
     </article>
   )
+
+  if (project.href) {
+    return (
+      <Link className="project-card-link" href={project.href}>
+        {card}
+      </Link>
+    )
+  }
+
+  return card
 }
 
 function Work() {
@@ -368,32 +258,6 @@ function Work() {
         {projects.map((project) => <ProjectCard project={project} key={project.title} />)}
       </div>
     </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer>
-      <div className="footer-main">
-        <div className="footer-intro">
-          <h2>Tell me what<br />you”re building</h2>
-          <p>I look forward to working with you, please feel free to send me an email</p>
-        </div>
-        <a className="email-pill" href="mailto:davidoshodi656@gmail.com">
-          davidoshodi656@gmail.com
-        </a>
-        <div className="socials">
-          <a href="https://dribbble.com" aria-label="Dribbble"><Icon file="90588.svg" /></a>
-          <a href="https://instagram.com" aria-label="Instagram"><Icon file="cd8cd.svg" /></a>
-          <a href="https://dribbble.com" aria-label="Dribbble"><Icon file="90588.svg" /></a>
-          <a href="https://dribbble.com" aria-label="Dribbble"><Icon file="90588.svg" /></a>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <span><Icon file="cdbb2.svg" /> OSHODI DAVID. ALL RIGHTS RESERVED</span>
-        <a href="#top"><Icon file="6ad45.svg" /> Back to top</a>
-      </div>
-    </footer>
   )
 }
 
