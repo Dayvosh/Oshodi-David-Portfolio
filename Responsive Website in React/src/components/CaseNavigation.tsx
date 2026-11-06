@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Icon from "./Icon"
+import SoundSwitch from "./SoundSwitch"
+import ThemeSwitch from "./ThemeSwitch"
 
 interface SectionRef {
   href: string
@@ -39,7 +41,13 @@ function NavLinks({ activeHref }: { activeHref: string }) {
   )
 }
 
-export default function CaseNavigation() {
+export default function CaseNavigation({
+  dark,
+  setDark,
+}: {
+  dark: boolean
+  setDark: (value: boolean) => void
+}) {
   const [activeHref, setActiveHref] = useState(navItems[0].href)
 
   useEffect(() => {
@@ -100,13 +108,16 @@ export default function CaseNavigation() {
         </nav>
       </aside>
       <header className="case-mobile-header">
-        <Link className="case-back" href="/#work">
-          <Icon file="case-back.svg" />
-          Back
-        </Link>
-        <nav aria-label="Case study navigation">
-          <NavLinks activeHref={activeHref} />
-        </nav>
+        <div className="case-mobile-top">
+          <Link className="case-back" href="/#work">
+            <Icon file="case-back.svg" />
+            Back
+          </Link>
+          <div className="mobile-actions">
+            <ThemeSwitch dark={dark} setDark={setDark} />
+            <SoundSwitch />
+          </div>
+        </div>
       </header>
     </>
   )

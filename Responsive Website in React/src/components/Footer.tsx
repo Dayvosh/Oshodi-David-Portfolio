@@ -5,7 +5,7 @@ export default function Footer() {
     <footer>
       <div className="footer-main">
         <div className="footer-intro">
-          <h2>Tell me what<br />you”re building</h2>
+          <h2>Tell me what<br />you're building</h2>
           <p>I look forward to working with you, please feel free to send me an email</p>
         </div>
         <a className="email-pill" href="mailto:davidoshodi656@gmail.com">

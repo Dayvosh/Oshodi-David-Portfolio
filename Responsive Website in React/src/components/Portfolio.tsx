@@ -5,8 +5,13 @@ import { useEffect, useState, type ReactNode } from 'react'
 import BankingShowcase from './BankingShowcase'
 import Footer from './Footer'
 import Icon from './Icon'
+import SoundSwitch from './SoundSwitch'
+import ThemeSwitch from './ThemeSwitch'
+import ThrPreview from './ThrPreview'
 import TpayPreview from './TpayPreview'
+import TopBar from './TopBar'
 import TruckPreview from './TruckPreview'
+import { useTheme } from './useTheme'
 
 const A = '/assets'
 
@@ -36,6 +41,7 @@ const projects: Project[] = [
     description:
       'Streamlining daily tasks to help drivers manage deliveries, navigate routes, and stay informed.',
     theme: 'truck',
+    href: '/work/truck-app',
   },
   {
     title: 'Tpay',
@@ -44,6 +50,7 @@ const projects: Project[] = [
     description:
       'Simplifying personal finance and business financial operations in one platform',
     theme: 'tpay',
+    href: '/work/tpay',
   },
   {
     title: 'THR',
@@ -52,6 +59,7 @@ const projects: Project[] = [
     description:
       'Redesigning the digital experience for a logistics platform aiming at improving the day to day for truck drivers',
     theme: 'thr',
+    href: '/work/thr',
   },
 ]
 
@@ -79,68 +87,112 @@ function SideNav() {
   )
 }
 
-function MobileHeader() {
+function MobileHeader({
+  dark,
+  setDark,
+  onMenuOpen,
+}: {
+  dark: boolean
+  setDark: (value: boolean) => void
+  onMenuOpen: () => void
+}) {
   return (
     <header className="mobile-header">
       <a className="portrait" href="#top" aria-label="Back to top">
         <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
       </a>
-      <a className="email-button compact" href="mailto:davidoshodi656@gmail.com">
-        <Icon file="e53f1.svg" />
-        Email Me
-      </a>
+      <div className="mobile-actions">
+        <ThemeSwitch dark={dark} setDark={setDark} />
+        <SoundSwitch />
+        <button
+          className="hamburger"
+          type="button"
+          aria-label="Open menu"
+          onClick={onMenuOpen}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M3 5h14M3 10h14M3 15h14" />
+          </svg>
+        </button>
+      </div>
     </header>
   )
 }
 
-function TopBar({
-  dark,
-  setDark,
+function MobileMenu({
+  open,
+  onClose,
 }: {
-  dark: boolean
-  setDark: (value: boolean) => void
+  open: boolean
+  onClose: () => void
 }) {
-  const [time, setTime] = useState('')
-
   useEffect(() => {
-    const update = () =>
-      setTime(
-        new Intl.DateTimeFormat('en-US', {
-          hour: 'numeric',
-          minute: '2-digit',
-          timeZone: 'Africa/Lagos',
-        }).format(new Date()),
-      )
-    update()
-    const timer = window.setInterval(update, 30_000)
-    return () => window.clearInterval(timer)
-  }, [])
+    if (!open) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [open])
 
   return (
-    <div className="top-bar">
-      <div className="location">{time} &nbsp; Lagos, Nigeria</div>
-      <div className="top-actions">
-        <div className="theme-switch" aria-label="Color theme">
-          <button
-            className={!dark ? 'selected' : ''}
-            onClick={() => setDark(false)}
-            aria-label="Use light theme"
-          >
-            <Icon file="08cb8.svg" />
-          </button>
-          <button
-            className={dark ? 'selected' : ''}
-            onClick={() => setDark(true)}
-            aria-label="Use dark theme"
-          >
-            <Icon file="0624c.svg" />
-          </button>
-        </div>
-        <a className="email-button compact" href="mailto:davidoshodi656@gmail.com">
-          <Icon file="e53f1.svg" />
-          Email Me
+    <div
+      className={`mobile-menu${open ? ' open' : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu"
+    >
+      <div className="mobile-menu-top">
+        <a className="portrait" href="#top" aria-label="Back to top" onClick={onClose}>
+          <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
         </a>
+        <button
+          className="menu-close"
+          type="button"
+          aria-label="Close menu"
+          onClick={onClose}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M5 5l10 10M15 5l-10 10" />
+          </svg>
+        </button>
       </div>
+      <nav>
+        <a className="active" href="#work" onClick={onClose}>
+          <Icon file="b01e8.svg" />
+          Work
+        </a>
+        <a href="#about" onClick={onClose}>
+          <Icon file="eb71e.svg" />
+          About
+        </a>
+        <a href="#resume" onClick={onClose}>
+          <Icon file="7d52f.svg" />
+          Resume
+        </a>
+      </nav>
+      <a className="email-button" href="mailto:davidoshodi656@gmail.com">
+        <Icon file="e53f1.svg" />
+        Email Me
+      </a>
     </div>
   )
 }
@@ -151,13 +203,13 @@ function Hero() {
       <div className="hero-title">
         <p>Oshodi David is a</p>
         <h1>Product Designer</h1>
-        <div className="sticker interaction">
+        {/* <div className="sticker interaction">
           <Icon file="b59f3.svg" />
           <span>INTERACTION<br />DESIGN</span>
         </div>
         <div className="sticker human">
           <img src={`${A}/HCD.svg`} alt="Human Centered Design" />
-        </div>
+        </div> */}
       </div>
       <div className="hero-copy">
         <p>
@@ -185,14 +237,6 @@ function PhoneShell({ children }: { children: ReactNode }) {
     <div className="phone-shell" aria-hidden="true">
       <div className="phone-island" />
       <div className="phone-screen">{children}</div>
-    </div>
-  )
-}
-
-function ThrPreview() {
-  return (
-    <div className="thr-image-wrap" aria-hidden="true">
-      <img src={`${A}/THR.svg`} alt="" draggable={false} />
     </div>
   )
 }
@@ -262,18 +306,27 @@ function Work() {
 }
 
 export default function App() {
-  const [dark, setDark] = useState(false)
+  const { dark, setDark } = useTheme()
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <div className={dark ? 'app dark' : 'app'} id="top">
-      <SideNav />
-      <MobileHeader />
-      <main>
-        <TopBar dark={dark} setDark={setDark} />
-        <div className="content">
-          <Hero />
-          <Work />
-        </div>
-      </main>
+    <div className="app" id="top">
+      <MobileHeader
+        dark={dark}
+        setDark={setDark}
+        onMenuOpen={() => setMenuOpen(true)}
+      />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <div className="layout">
+        <SideNav />
+        <main>
+          <TopBar dark={dark} setDark={setDark} />
+          <div className="content">
+            <Hero />
+            <Work />
+          </div>
+        </main>
+      </div>
       <Footer />
     </div>
   )

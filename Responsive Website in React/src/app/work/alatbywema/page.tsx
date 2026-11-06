@@ -1,12 +1,11 @@
-import type { Metadata } from 'next'
-import AlatCaseStudy from '@/components/AlatCaseStudy'
+import type { Metadata } from "next"
+import CaseStudy from "@/components/CaseStudy"
+import { caseStudies } from "@/lib/caseStudies"
 
-export const metadata: Metadata = {
-  title: 'ALATbyWEMA — Case Study — Oshodi David',
-  description:
-    "ALAT by Wema is Nigeria's first fully digital bank, enabling customers to open accounts and manage their finances entirely online",
-}
+const study = caseStudies.alatbywema
+
+export const metadata: Metadata = study.metadata
 
 export default function Page() {
-  return <AlatCaseStudy />
+  return <CaseStudy study={study} />
 }
