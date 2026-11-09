@@ -223,10 +223,16 @@ function Hero() {
             <Icon file="e53f1.svg" />
             Email Me
           </a>
-          <button className="resume-button" id="resume" onClick={() => window.print()}>
+          <a
+            className="resume-button"
+            id="resume"
+            href="https://drive.google.com/file/d/1H18gr6KmXAM37cn8rWu5kASpTRfgNOaa/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon file="9a1ef.svg" />
             Resume
-          </button>
+          </a>
         </div>
       </div>
     </section>

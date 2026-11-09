@@ -12,10 +12,10 @@ export default function Footer() {
           davidoshodi656@gmail.com
         </a>
         <div className="socials">
-          <a href="https://dribbble.com" aria-label="Dribbble"><Icon file="90588.svg" /></a>
-          <a href="https://instagram.com" aria-label="Instagram"><Icon file="cd8cd.svg" /></a>
-          <a href="https://github.com" aria-label="GitHub"><Icon file="github.svg" /></a>
-          <a href="https://www.linkedin.com" aria-label="LinkedIn"><Icon file="linkedin.svg" /></a>
+          <a href="https://dribbble.com/dayveed10" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><Icon file="90588.svg" /></a>
+          <a href="https://www.instagram.com/the_oshodi_of_design?rpxt=N3hsdGY0NGhsN25q&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Icon file="cd8cd.svg" /></a>
+          <a href="https://github.com/Dayvosh" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Icon file="github.svg" /></a>
+          <a href="https://www.linkedin.com/in/oshodi-david-8142a5208/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Icon file="linkedin.svg" /></a>
         </div>
       </div>
       <div className="footer-bottom">

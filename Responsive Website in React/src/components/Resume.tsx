@@ -177,14 +177,15 @@ export default function Resume() {
                 across web and mobile. Specialized in end-to-end product
                 building, AI-assisted workflows and data-driven design.
               </p>
-              <button
+              <a
                 className="resume-download"
-                type="button"
-                onClick={() => window.print()}
+                href="https://drive.google.com/file/d/1H18gr6KmXAM37cn8rWu5kASpTRfgNOaa/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon file="9a1ef.svg" />
                 Download Resume
-              </button>
+              </a>
             </section>
             <section className="resume-section">
               <h2 className="resume-section-title">Work Experience</h2>
