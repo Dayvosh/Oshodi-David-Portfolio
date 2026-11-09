@@ -20,10 +20,20 @@ const navItems = [
   { label: "Conclusion", href: "#conclusion" },
 ]
 
-function NavLinks({ activeHref }: { activeHref: string }) {
+const thrNavItems = navItems.filter(
+  (item) => item.href === "#about-project" || item.href === "#final-product",
+)
+
+function NavLinks({
+  activeHref,
+  items,
+}: {
+  activeHref: string
+  items: typeof navItems
+}) {
   return (
     <>
-      {navItems.map((item) => {
+      {items.map((item) => {
         const active = item.href === activeHref
 
         return (
@@ -44,16 +54,19 @@ function NavLinks({ activeHref }: { activeHref: string }) {
 export default function CaseNavigation({
   dark,
   setDark,
+  slug,
 }: {
   dark: boolean
   setDark: (value: boolean) => void
+  slug?: string
 }) {
-  const [activeHref, setActiveHref] = useState(navItems[0].href)
+  const items = slug === "thr" ? thrNavItems : navItems
+  const [activeHref, setActiveHref] = useState(items[0].href)
 
   useEffect(() => {
     const sections: SectionRef[] = []
 
-    for (const item of navItems) {
+    for (const item of items) {
       const element = document.getElementById(item.href.slice(1))
 
       if (element) {
@@ -94,7 +107,7 @@ export default function CaseNavigation({
       window.removeEventListener("resize", handleScroll)
       if (frame !== 0) window.cancelAnimationFrame(frame)
     }
-  }, [])
+  }, [items])
 
   return (
     <>
@@ -104,7 +117,7 @@ export default function CaseNavigation({
           Back
         </Link>
         <nav>
-          <NavLinks activeHref={activeHref} />
+          <NavLinks activeHref={activeHref} items={items} />
         </nav>
       </aside>
       <header className="case-mobile-header">

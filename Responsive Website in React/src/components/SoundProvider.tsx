@@ -13,7 +13,6 @@ import {
   disableSound,
   enableSound,
   playSound,
-  playSoundWhenReady,
   preloadDeferred,
   preloadEssentials,
   setSoundEnabled,
@@ -21,7 +20,6 @@ import {
 } from '../lib/sound'
 
 const STORAGE_KEY = 'portfolio-sound'
-const LOAD_SESSION_KEY = 'portfolio-sound-load-played'
 
 interface SoundContextValue {
   enabled: boolean
@@ -57,21 +55,6 @@ const CLICK_SELECTOR = [
   '.socials a',
 ].join(',')
 
-const HOVER_SELECTOR = [
-  '.project-card-link',
-  '.case-more-card-link',
-  '.side-nav nav a',
-  '.mobile-menu nav a',
-  '.case-side-nav nav a',
-  '.email-button',
-  '.email-pill',
-  '.resume-button',
-  '.case-live-button',
-  '.tabs button',
-  '.theme-switch button',
-  '.sound-switch',
-].join(',')
-
 function isInternalRouteLink(anchor: HTMLAnchorElement, event: MouseEvent) {
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
     return false
@@ -100,9 +83,6 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false)
   const enabledRef = useRef(true)
   const firstPath = useRef(true)
-  const skipTransition = useRef(false)
-  const skipTransitionTimer = useRef<number | null>(null)
-  const suppressClickUntil = useRef(0)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -132,8 +112,6 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
 
     if (next) {
       enableSound()
-      window.sessionStorage.setItem(LOAD_SESSION_KEY, '1')
-      void playSoundWhenReady('load')
       window.setTimeout(() => {
         void preloadDeferred()
       }, 400)
@@ -152,12 +130,6 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       if (!enabledRef.current) return
 
       unlockSound()
-
-      if (window.sessionStorage.getItem(LOAD_SESSION_KEY) !== '1') {
-        window.sessionStorage.setItem(LOAD_SESSION_KEY, '1')
-        suppressClickUntil.current = performance.now() + 260
-        void playSoundWhenReady('load')
-      }
 
       window.setTimeout(() => {
         void preloadDeferred()
@@ -196,8 +168,6 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       ) {
         return
       }
-      if (performance.now() < suppressClickUntil.current) return
-
       playSound('click')
     }
 
@@ -207,112 +177,14 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!ready) return
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      return
-    }
-
-    const handlePointerOver = (event: PointerEvent) => {
-      if (!enabledRef.current || event.pointerType !== 'mouse') return
-
-      const target = event.target as Element | null
-      const element = target?.closest(HOVER_SELECTOR)
-      if (!element) return
-
-      const related = event.relatedTarget as Node | null
-      if (related && element.contains(related)) return
-
-      playSound('hover')
-    }
-
-    document.addEventListener('pointerover', handlePointerOver, {
-      passive: true,
-    })
-    return () => document.removeEventListener('pointerover', handlePointerOver)
-  }, [ready])
-
-  useEffect(() => {
-    const handlePopState = () => {
-      skipTransition.current = true
-      if (skipTransitionTimer.current !== null) {
-        window.clearTimeout(skipTransitionTimer.current)
-      }
-      skipTransitionTimer.current = window.setTimeout(() => {
-        skipTransition.current = false
-      }, 1000)
-    }
-
-    window.addEventListener('popstate', handlePopState)
-    return () => {
-      window.removeEventListener('popstate', handlePopState)
-      if (skipTransitionTimer.current !== null) {
-        window.clearTimeout(skipTransitionTimer.current)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!ready) return
 
     if (firstPath.current) {
       firstPath.current = false
       return
     }
 
-    if (skipTransition.current) {
-      skipTransition.current = false
-      if (skipTransitionTimer.current !== null) {
-        window.clearTimeout(skipTransitionTimer.current)
-      }
-      return
-    }
-
     if (!enabledRef.current) return
     playSound('transition')
-  }, [pathname, ready])
-
-  useEffect(() => {
-    if (!ready) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const ids =
-      pathname === '/'
-        ? ['work']
-        : ['problem', 'design-process', 'final-product', 'conclusion']
-
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section))
-
-    if (!sections.length) return
-
-    const seen = new Set<string>()
-    let readyAt = performance.now() + 1200
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!enabledRef.current || performance.now() < readyAt) return
-
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          const id = entry.target.id
-          if (seen.has(id)) continue
-          seen.add(id)
-          playSound('section')
-        }
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -35% 0px' },
-    )
-
-    sections.forEach((section) => observer.observe(section))
-
-    const timer = window.setTimeout(() => {
-      readyAt = performance.now()
-    }, 1300)
-
-    return () => {
-      window.clearTimeout(timer)
-      observer.disconnect()
-    }
   }, [pathname, ready])
 
   return (

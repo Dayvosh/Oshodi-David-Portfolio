@@ -5,6 +5,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import BankingShowcase from './BankingShowcase'
 import Footer from './Footer'
 import Icon from './Icon'
+import NavIcon from './NavIcon'
 import SoundSwitch from './SoundSwitch'
 import ThemeSwitch from './ThemeSwitch'
 import ThrPreview from './ThrPreview'
@@ -71,17 +72,17 @@ function SideNav() {
       </a>
       <nav>
         <a className="active" href="#work">
-          <Icon file="b01e8.svg" />
+          <NavIcon name="work" />
           Work
         </a>
-        <a href="#about">
-          <Icon file="eb71e.svg" />
+        <Link href="/about">
+          <NavIcon name="about" />
           About
-        </a>
-        <a href="#resume">
-          <Icon file="7d52f.svg" />
+        </Link>
+        <Link href="/resume">
+          <NavIcon name="resume" />
           Resume
-        </a>
+        </Link>
       </nav>
     </aside>
   )
@@ -177,17 +178,17 @@ function MobileMenu({
       </div>
       <nav>
         <a className="active" href="#work" onClick={onClose}>
-          <Icon file="b01e8.svg" />
+          <NavIcon name="work" />
           Work
         </a>
-        <a href="#about" onClick={onClose}>
-          <Icon file="eb71e.svg" />
+        <Link href="/about" onClick={onClose}>
+          <NavIcon name="about" />
           About
-        </a>
-        <a href="#resume" onClick={onClose}>
-          <Icon file="7d52f.svg" />
+        </Link>
+        <Link href="/resume" onClick={onClose}>
+          <NavIcon name="resume" />
           Resume
-        </a>
+        </Link>
       </nav>
       <a className="email-button" href="mailto:davidoshodi656@gmail.com">
         <Icon file="e53f1.svg" />
@@ -283,6 +284,82 @@ function ProjectCard({ project }: { project: Project }) {
   return card
 }
 
+type ShowcaseItem = {
+  type: 'video' | 'image' | 'empty'
+  src?: string
+  fit?: 'cover' | 'contain'
+  bg?: string
+}
+
+const showcaseItems: ShowcaseItem[] = [
+  { type: 'video', src: `${A}/showcase/apple.mp4` },
+  { type: 'image', src: `${A}/showcase/cs-1.png` },
+  { type: 'image', src: `${A}/showcase/cs-9.png` },
+  { type: 'image', src: `${A}/showcase/dark-8.png` },
+  { type: 'image', src: `${A}/showcase/ecom-9.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225510.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225512.png` },
+  { type: 'image', src: `${A}/showcase/h2.png` },
+  { type: 'image', src: `${A}/showcase/img-1176.png` },
+  { type: 'image', src: `${A}/showcase/img-1178.png` },
+  { type: 'image', src: `${A}/showcase/instagram-3.png` },
+  { type: 'image', src: `${A}/showcase/instagram-4.png` },
+  { type: 'image', src: `${A}/showcase/of-11.png` },
+  { type: 'image', src: `${A}/showcase/of-2.png` },
+  { type: 'image', src: `${A}/showcase/onboard-2.png` },
+  { type: 'image', src: `${A}/showcase/profile-1.png` },
+  { type: 'image', src: `${A}/showcase/sn2.png` },
+  { type: 'image', src: `${A}/showcase/sn4.png` },
+  { type: 'image', src: `${A}/showcase/stats-1.png` },
+  { type: 'image', src: `${A}/showcase/deduction.png` },
+  { type: 'image', src: `${A}/showcase/form-builder-2.png` },
+  { type: 'image', src: `${A}/showcase/form-builder-3.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225355.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225357.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225359.png` },
+  { type: 'image', src: `${A}/showcase/frame-2147225363.png`, fit: 'contain' },
+  { type: 'image', src: `${A}/showcase/m1.png` },
+  { type: 'image', src: `${A}/showcase/m4.png` },
+  { type: 'image', src: `${A}/showcase/of.png` },
+  { type: 'video', src: `${A}/showcase/q3.mp4`, fit: 'contain', bg: '#e6e6e6' },
+  { type: 'video', src: `${A}/showcase/scene-1.mp4`, fit: 'contain', bg: '#d36700' },
+  { type: 'image', src: `${A}/showcase/tfleet-dash.png` },
+  { type: 'image', src: `${A}/showcase/tpay-mobile-1-1.png` },
+]
+
+function ShowcaseGrid() {
+  const mediaClass = (item: ShowcaseItem) =>
+    `showcase-media${item.fit === 'contain' ? ' showcase-media--contain' : ''}`
+  const ordered = [...showcaseItems].sort(
+    (a, b) => Number(a.type !== 'video') - Number(b.type !== 'video'),
+  )
+  return (
+    <div className="showcase-grid">
+      {ordered.map((item, index) => (
+        <div
+          className="showcase-tile"
+          key={index}
+          style={item.bg ? { background: item.bg } : undefined}
+        >
+          {item.type === 'video' && (
+            <video
+              className={mediaClass(item)}
+              src={item.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          )}
+          {item.type === 'image' && (
+            <img className={mediaClass(item)} src={item.src} alt="" />
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function Work() {
   const [tab, setTab] = useState<'cases' | 'showcase'>('cases')
   return (
@@ -298,9 +375,13 @@ function Work() {
           </button>
         </div>
       </div>
-      <div className="project-list">
-        {projects.map((project) => <ProjectCard project={project} key={project.title} />)}
-      </div>
+      {tab === 'cases' ? (
+        <div className="project-list">
+          {projects.map((project) => <ProjectCard project={project} key={project.title} />)}
+        </div>
+      ) : (
+        <ShowcaseGrid />
+      )}
     </section>
   )
 }

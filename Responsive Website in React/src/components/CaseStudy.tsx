@@ -3,11 +3,7 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { useEffect, useState } from "react"
-import type {
-  CaseStudyData,
-  CaseTheme,
-  MoreStudy,
-} from "@/lib/caseStudies"
+import type { CaseStudyData, CaseTheme, MoreStudy } from "@/lib/caseStudies"
 import { moreCaseStudies } from "@/lib/caseStudies"
 import BankingShowcase from "./BankingShowcase"
 import CaseNavigation from "./CaseNavigation"
@@ -18,6 +14,8 @@ import TopBar from "./TopBar"
 import TpayPreview from "./TpayPreview"
 import TruckPreview from "./TruckPreview"
 import { useTheme } from "./useTheme"
+
+const A = "/assets"
 
 function MetaCard({
   label,
@@ -50,7 +48,9 @@ function CaseHeroVisual({ theme }: { theme: CaseTheme }) {
   if (theme === "tpay") {
     return (
       <div className="project-visual tpay-theme">
-        <TpayPreview />
+        <div className="tpay-image-wrap">
+          <img src={`${A}/Hero Image Details.svg`} alt="" draggable={false} />
+        </div>
       </div>
     )
   }
@@ -69,8 +69,11 @@ function CaseHero({ study }: { study: CaseStudyData }) {
       <p className="case-eyebrow">{hero.eyebrow}</p>
       <h1 className="case-title">{hero.title}</h1>
       <p className="case-subtext">{hero.subtext}</p>
-      {hero.liveApp ? <LiveAppButton /> : null}
-      <div className="case-visual" aria-hidden="true">
+      {hero.liveApp ? <LiveAppButton href={hero.liveAppUrl} /> : null}
+      <div
+        className={`case-visual case-visual--${hero.visual}`}
+        aria-hidden="true"
+      >
         <CaseHeroVisual theme={hero.visual} />
       </div>
       <div className="case-meta">
@@ -95,8 +98,8 @@ function CaseAbout({ study }: { study: CaseStudyData }) {
       <p className="case-eyebrow">{about.eyebrow}</p>
       <h2 className="case-about-title">{about.title}</h2>
       <div className="case-about-copy">
-        {about.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+        {about.paragraphs.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
         ))}
         {about.emphasis ? (
           <p className="case-about-emphasis">{about.emphasis}</p>
@@ -133,9 +136,11 @@ function CaseProblem({ study }: { study: CaseStudyData }) {
         </figure>
       ) : null}
 
-      <div className="case-problem-copy">
-        <p>{problem.intro}</p>
-      </div>
+      {problem.intro ? (
+        <div className="case-problem-copy">
+          <p>{problem.intro}</p>
+        </div>
+      ) : null}
 
       {problem.screenshots?.length ? (
         <div
@@ -203,6 +208,11 @@ function CaseGoals({ study }: { study: CaseStudyData }) {
           </p>
         ))}
       </div>
+      {goals.visual ? (
+        <div className="case-goals-visual">
+          <img src={goals.visual.src} alt={goals.visual.alt} />
+        </div>
+      ) : null}
     </section>
   )
 }
@@ -342,18 +352,16 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                 }
                 key={index}
               >
-                {item.src ? (
-                  <img src={item.src} alt={item.alt ?? ""} />
-                ) : null}
+                {item.src ? <img src={item.src} alt={item.alt ?? ""} /> : null}
               </div>
             ))}
           </div>
         </div>
       ) : null}
       <div className="case-final-blocks">
-        {finalProduct.blocks.map((block) => (
-          <div className="case-final-block" key={block.title}>
-            <h3>{block.title}</h3>
+        {finalProduct.blocks.map((block, blockIndex) => (
+          <div className="case-final-block" key={block.title ?? blockIndex}>
+            {block.title ? <h3>{block.title}</h3> : null}
             {block.copy ? (
               <p className="case-final-block-copy">{block.copy}</p>
             ) : null}
@@ -395,7 +403,12 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                       className={`case-final-gallery case-final-gallery--${group.layout}`}
                     >
                       {group.images.map((image) => (
-                        <div className="case-final-image" key={image.src}>
+                        <div
+                          className={`case-final-image${
+                            image.framed ? " is-framed" : ""
+                          }`}
+                          key={image.src}
+                        >
                           <img src={image.src} alt={image.alt} />
                           {image.label ? (
                             <span
@@ -486,9 +499,9 @@ function MoreStudyVisual({ theme }: { theme: CaseTheme }) {
 
 function CaseMoreStudies({ study }: { study: CaseStudyData }) {
   const currentPath = `/work/${study.slug}`
-  const related: MoreStudy[] = moreCaseStudies.filter(
-    (item) => item.href !== currentPath,
-  )
+  const related: MoreStudy[] = moreCaseStudies
+    .filter((item) => item.href !== currentPath)
+    .slice(0, 2)
 
   return (
     <section className="case-more" id="more-case-studies">
@@ -556,20 +569,22 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
     }
   }, [])
 
+  const isThr = study.slug === "thr"
+
   return (
     <div className={`case-app${headerHidden ? " header-hidden" : ""}`} id="top">
       <div className="case-layout">
-        <CaseNavigation dark={dark} setDark={setDark} />
+        <CaseNavigation dark={dark} setDark={setDark} slug={study.slug} />
         <main className="case-main">
           <TopBar dark={dark} setDark={setDark} />
           <article className="case-content">
             <CaseHero study={study} />
             <CaseAbout study={study} />
-            <CaseProblem study={study} />
-            <CaseGoals study={study} />
-            <CaseDesignProcess study={study} />
+            {!isThr ? <CaseProblem study={study} /> : null}
+            {!isThr ? <CaseGoals study={study} /> : null}
+            {!isThr ? <CaseDesignProcess study={study} /> : null}
             <CaseFinalProduct study={study} />
-            <CaseConclusion study={study} />
+            {!isThr ? <CaseConclusion study={study} /> : null}
             <CaseMoreStudies study={study} />
           </article>
         </main>

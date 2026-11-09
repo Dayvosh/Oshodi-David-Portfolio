@@ -46,6 +46,7 @@ export interface CaseFinalVisual {
   alt: string
   label?: "OLD DESIGN" | "NEW DESIGN"
   labelTop?: string
+  framed?: boolean
 }
 
 export interface CaseFinalGroup {
@@ -61,7 +62,7 @@ export interface CaseFinalIllustration {
 }
 
 export interface CaseFinalBlock {
-  title: string
+  title?: string
   copy?: string
   paragraphs?: string[]
   improvementsTitle?: string
@@ -84,18 +85,19 @@ export interface CaseStudyData {
     subtext: string
     visual: CaseTheme
     liveApp?: boolean
+    liveAppUrl?: string
     meta: CaseMetaItem[]
   }
   about: {
     eyebrow: string
     title: string
-    paragraphs: string[]
+    paragraphs: ReactNode[]
     emphasis?: string
   }
   problem: {
     eyebrow: string
     title: string
-    intro: string
+    intro?: string
     quote?: {
       text: string
       author: string
@@ -116,6 +118,10 @@ export interface CaseStudyData {
     title: string
     paragraphs: string[]
     emphasizeFirst?: boolean
+    visual?: {
+      src: string
+      alt: string
+    }
   }
   designProcess: {
     eyebrow: string
@@ -907,8 +913,10 @@ const tpay: CaseStudyData = {
     eyebrow: "2025 • Fintech • Case study",
     title: "Tpay",
     subtext:
-      "Simplifying personal finance and business financial operations in one platform",
+      "TPay is an all-in-one financial platform designed to simplify how individuals manage everyday finances and how businesses handle payments, payroll, invoicing, and other essential financial operations",
     visual: "tpay",
+    liveApp: true,
+    liveAppUrl: "https://tpay.com.ng",
     meta: [
       { label: "My Role", value: "Product Designer" },
       { label: "Timeline", value: "3 month" },
@@ -931,127 +939,216 @@ const tpay: CaseStudyData = {
     eyebrow: "ABOUT THE PROJECT",
     title: "What Is Tpay?",
     paragraphs: [
-      "Tpay is a fintech platform that brings personal finance and business financial operations together in one place. It supports everyday payments as well as the tools businesses need to manage money with confidence.",
-      "As the platform grew, the experience became harder to navigate. Related tasks were spread across different areas, and users had to work harder to understand where to go and what to do next.",
-      "The opportunity was to create a clearer, more cohesive product that makes payments, payroll, and financial operations feel connected rather than separate.",
+      "TPay is a financial platform designed to simplify how individuals and businesses manage their financial activities. By bringing essential financial services into a connected digital experience, the platform aims to make everyday financial tasks more accessible, convenient, and efficient.",
+      <>
+        <strong>TPay Personal</strong> caters to individuals, providing access
+        to personal financial services and everyday transactions.
+      </>,
+      <>
+        <strong>TPay Corporate</strong> on the other hand, is designed for
+        businesses, bringing together financial operations such as payments,
+        payroll, invoicing, expense management, tax compliance, and vendor
+        payments. Together, these offerings address the financial needs of users
+        across both personal and business contexts.
+      </>,
+      "The design challenge was to create clear, intuitive experiences that serve these different user groups and their distinct needs. While individual users need a straightforward way to manage everyday financial activities, business users require greater visibility, control, and structure when handling complex financial workflows",
     ],
-    emphasis:
-      "The redesign focused on simplifying core financial workflows, improving visibility across accounts and transactions, and creating a consistent system that can scale with the product.",
   },
   problem: {
     eyebrow: "THE PROBLEM",
     title: "Reason For The Redesign",
-    intro:
-      "The problems identified were informed by user feedback, product usage patterns, and a review of the key tasks people perform most often across the platform.",
-    screenshots: [
-      {
-        src: `${A}/Tpay.svg`,
-        alt: "Tpay dashboard screen",
-      },
-    ],
-    screenshotsLabel: "Screens from the Tpay experience",
     coreProblems: [
       {
-        title: "Disconnected Financial Tools",
-        body: "Payments, payroll, and financial operations lived in separate areas, making it difficult for users to understand how the pieces fit together.",
+        title: "Friction in Everyday Transactions",
+        body: "Routine financial activities should be straightforward to complete. Unclear navigation, unnecessary steps, or confusing transaction feedback can create friction for individuals making payments and businesses processing financial transactions",
       },
       {
-        title: "Slow Reconciliation",
-        body: "Users had to piece together transaction information from multiple views, which made reviewing and reconciling activity more time-consuming.",
+        title: "Complexity in Business Financial Operations",
+        body: "Businesses must coordinate activities such as payroll, invoicing, expense tracking, taxes, and vendor payments. Managing these responsibilities can become complicated when workflows are difficult to navigate or financial information is not easy to access.",
       },
       {
-        title: "Unclear Payroll Workflows",
-        body: "Payroll tasks lacked a clear structure, making it harder to know what had been completed and what still needed attention.",
-      },
-      {
-        title: "Inconsistent UI Patterns",
-        body: "Screens followed different layouts and interaction patterns, reducing predictability and making the product harder to learn.",
-      },
-      {
-        title: "Limited Operational Visibility",
-        body: "Important account and transaction information was not easy to scan, making it harder for users to stay on top of their finances.",
+        title: "Disconnected Financial Needs",
+        body: "Individuals and businesses have different financial responsibilities, but both need convenient ways to manage transactions and access financial services. Experiences that do not clearly address these different needs can make it harder for users to find the right tools for their situation.",
       },
     ],
   },
   goals: {
     eyebrow: "GOALS",
-    title: "What Should The Redesign Do Better?",
+    title: "What Are We Planning To Achieve?",
     paragraphs: [
-      "The goal was to create a unified financial experience that makes core tasks easier to find, understand, and complete. The redesign focused on clearer information hierarchy, simpler workflows, and a consistent visual system.",
-      "Ultimately, the aim was to help individuals and businesses manage money with greater confidence while supporting the platform's continued growth.",
+      "To create a clear, intuitive, and connected financial experience that helps individuals manage everyday transactions with ease while enabling businesses to handle complex financial operations more efficiently.",
+      "The design goal was to simplify key user journeys, improve navigation and information hierarchy, and make essential financial services easier to discover and use. At the same time, the experience needed to accommodate the distinct needs of personal and corporate users, from straightforward everyday transactions to more structured business workflows.",
+      "Ultimately, the aim was to make financial management feel more accessible for individuals and more efficient, transparent, and manageable for businesses",
     ],
+    visual: {
+      src: `${A}/tpay-goals-phones.svg`,
+      alt: "TPay mobile app screens",
+    },
   },
   designProcess: {
     eyebrow: "DESIGN PROCESS",
-    title: "Turning Insights Into Meaningful Design Decisions",
+    title:
+      "Understanding problems, exploring possibilities, refining solutions",
     steps: [
       {
-        title: "Understanding Core Financial Tasks",
+        title: "Understanding two different financial audiences",
         copy: [
-          "I reviewed feedback and usage patterns to identify the tasks users rely on most often, from making payments to managing payroll and reviewing transactions. This helped highlight where the experience added unnecessary effort.",
+          "I focused on understanding the financial needs of individuals and businesses. While individuals need convenient ways to manage everyday finances, businesses require broader tools for payroll, invoicing, vendor payments, and tax compliance. These insights shaped a platform that serves both audiences with experiences tailored to their needs.",
         ],
       },
       {
-        title: "Structuring The Platform",
+        title: "Defining the product experience",
         copy: [
-          "I mapped the main journeys and grouped related tasks into a clearer information architecture. I also looked at established fintech products to identify patterns that could improve clarity without making the product feel generic.",
-          "These insights informed a simpler navigation structure and a more predictable approach to common financial actions.",
+          "With a clearer understanding of user needs, I defined how TPay's personal and corporate services would be structured, ensuring features were easy to find and the platform could scale without compromising usability.",
         ],
       },
       {
-        title: "Design, Prototype & Test",
+        title: "Structuring the user journeys",
         copy: [
-          "I refined the flows through low-fidelity prototypes before moving into high-fidelity designs. Feedback from each round helped simplify the experience and remove unnecessary steps.",
-          "I then built out a reusable visual system that supports consistency across current and future features.",
+          "With the product structure and key workflows defined, I translated them into interface concepts that balanced clarity, usability, and visual consistency. I explored how information should be prioritized, how complex financial data could be presented clearly, and how users could recognize important actions.",
+        ],
+      },
+      {
+        title: "Validating the experience through real-world scenarios",
+        copy: [
+          "I used interactive prototypes to explore how the proposed journeys would work beyond static screens. I considered realistic scenarios, such as a personal user completing a transaction or a business user processing a payment and reviewing its status. These scenarios helped evaluate whether the information was clear, the next steps were predictable, and users could understand the outcome of their actions. Feedback and testing, where available, would inform further iterations before the designs were finalized.",
         ],
       },
     ],
-    visual: {
-      src: `${A}/Tpay.svg`,
-      alt: "Tpay dashboard",
-    },
   },
   finalProduct: {
     eyebrow: "FINAL PRODUCT",
     title: "High Fidelity Designs",
     blocks: [
       {
-        title: "Payments Overview",
-        copy: "A clearer starting point for understanding account activity and moving into common financial tasks.",
-        improvements: [
+        title: "Dashboard",
+        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        improvements: [],
+        groups: [
           {
-            label: "Unified account view",
-            body: "Brought balances, recent activity, and key actions into one focused overview.",
-          },
-          {
-            label: "Clear transaction hierarchy",
-            body: "Presented transaction information so users can scan and understand activity quickly.",
-          },
-          {
-            label: "Consistent components",
-            body: "Created reusable patterns that make the platform easier to learn and navigate.",
+            layout: "full",
+            images: [
+              {
+                src: `${A}/tpay-final-01.png`,
+                alt: "TPay Corporate dashboard",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-02.png`,
+                alt: "TPay Personal dashboard",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-03.png`,
+                alt: "TPay wallet dashboard",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-04.png`,
+                alt: "Dashboard screen 4",
+                framed: true,
+              },
+            ],
           },
         ],
-        image: `${A}/Tpay.svg`,
       },
       {
-        title: "Payroll & Operations",
-        copy: "A more structured experience for managing payroll and day-to-day financial operations.",
-        improvements: [
+        title: "Payments",
+        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        improvements: [],
+        groups: [
           {
-            label: "Clear payroll steps",
-            body: "Organised payroll tasks into a predictable sequence with visible progress.",
-          },
-          {
-            label: "Better operational visibility",
-            body: "Surfaced the information users need to review and confirm activity with confidence.",
-          },
-          {
-            label: "Scalable structure",
-            body: "Built a flexible layout that can support additional financial tools as the platform grows.",
+            layout: "full",
+            images: [
+              {
+                src: `${A}/tpay-final-05.png`,
+                alt: "Payments screen 1",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-06.png`,
+                alt: "Payments screen 2",
+                framed: true,
+              },
+            ],
           },
         ],
-        image: `${A}/Tpay.svg`,
+      },
+      {
+        title: "Invoicing",
+        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        improvements: [],
+        groups: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: `${A}/tpay-final-07.png`,
+                alt: "Invoicing screen 1",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-08.png`,
+                alt: "Invoicing screen 2",
+                framed: true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Transaction History",
+        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        improvements: [],
+        groups: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: `${A}/tpay-final-09.png`,
+                alt: "Transaction history screen 1",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-10.png`,
+                alt: "Transaction history screen 2",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-11.png`,
+                alt: "Transaction history screen 3",
+                framed: true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Auth Pages",
+        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        improvements: [],
+        groups: [
+          {
+            layout: "full",
+            images: [
+              {
+                src: `${A}/tpay-final-12.png`,
+                alt: "Auth screen 1",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-13.png`,
+                alt: "Auth screen 2",
+                framed: true,
+              },
+              {
+                src: `${A}/tpay-final-14.png`,
+                alt: "Auth screen 3",
+                framed: true,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -1077,11 +1174,11 @@ const thr: CaseStudyData = {
     eyebrow: "2025 • Human Resource (HR) • Case study",
     title: "THR",
     subtext:
-      "Redesigning the digital experience for a logistics platform aiming at improving the day to day for truck drivers",
+      "THR is a Human Resource and Payroll Management platform developed to assist organizations in managing employee records, payroll processing, attendance management, statutory remittances, leave administration, and other workforce-related activities.",
     visual: "thr",
     meta: [
       { label: "My Role", value: "Product Designer" },
-      { label: "Timeline", value: "3 month" },
+      { label: "Timeline", value: "2 month" },
       {
         label: "Responsibilities",
         value: (
@@ -1190,44 +1287,44 @@ const thr: CaseStudyData = {
     title: "High Fidelity Designs",
     blocks: [
       {
-        title: "Employee Dashboard",
-        copy: "A clearer overview of people information and the tasks that need attention.",
-        improvements: [
+        improvements: [],
+        groups: [
           {
-            label: "Centralised employee records",
-            body: "Brought key employee information into one consistent view.",
-          },
-          {
-            label: "Clear information hierarchy",
-            body: "Presented the most important details first so teams can scan and act quickly.",
-          },
-          {
-            label: "Consistent visual language",
-            body: "Introduced reusable components and patterns to make the platform easier to learn.",
+            layout: "stack",
+            images: [
+              {
+                src: `${A}/thr-final-01.png`,
+                alt: "THR leave request dashboard",
+                framed: true,
+              },
+              {
+                src: `${A}/thr-final-02.png`,
+                alt: "THR update password settings",
+                framed: true,
+              },
+              {
+                src: `${A}/thr-final-03.png`,
+                alt: "THR payroll approvals",
+                framed: true,
+              },
+              {
+                src: `${A}/thr-final-04.png`,
+                alt: "THR leave details",
+                framed: true,
+              },
+              {
+                src: `${A}/thr-final-05.png`,
+                alt: "THR resource bank",
+                framed: true,
+              },
+              {
+                src: `${A}/thr-final-06.png`,
+                alt: "THR structured payroll settings",
+                framed: true,
+              },
+            ],
           },
         ],
-        image: `${A}/THR.svg`,
-      },
-      {
-        title: "People Operations",
-        copy: "A more structured experience for managing attendance, leave, and everyday HR tasks.",
-        improvements: [
-          {
-            label: "Simplified workflows",
-            body: "Reduced the steps required to complete routine people operations tasks.",
-          },
-          {
-            label: "Better visibility",
-            body: "Made attendance and leave information easier to review at a glance.",
-          },
-          {
-            label: "Scalable structure",
-            body: "Built a flexible layout that can support additional HR tools as the business grows.",
-          },
-        ],
-        visuals: 2,
-        image: `${A}/THR.png`,
-        image2: `${A}/THR.svg`,
       },
     ],
   },

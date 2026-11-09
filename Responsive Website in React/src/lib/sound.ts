@@ -1,39 +1,27 @@
-export type SoundName = 'click' | 'hover' | 'transition' | 'load' | 'section'
+export type SoundName = 'click' | 'transition'
 
 const SOURCES: Record<SoundName, string> = {
   click: '/sounds/click.m4a',
-  hover: '/sounds/hover.m4a',
-  transition: '/sounds/transition.m4a',
-  load: '/sounds/transition.m4a',
-  section: '/sounds/section.m4a',
+  transition: '/sounds/mixkit-page-turn-single-1104.wav',
 }
 
 const GAINS: Record<SoundName, number> = {
   click: 0.3,
-  hover: 0.14,
-  transition: 0.26,
-  load: 0.2,
-  section: 0.16,
+  transition: 0.4,
 }
 
 const COOLDOWNS: Record<SoundName, number> = {
   click: 70,
-  hover: 120,
-  transition: 250,
-  load: 1000,
-  section: 1500,
+  transition: 180,
 }
 
 const MAX_CONCURRENT: Record<SoundName, number> = {
   click: 2,
-  hover: 1,
   transition: 1,
-  load: 1,
-  section: 1,
 }
 
-const ESSENTIALS: SoundName[] = ['click', 'hover', 'load']
-const DEFERRED: SoundName[] = ['transition', 'section']
+const ESSENTIALS: SoundName[] = ['click', 'transition']
+const DEFERRED: SoundName[] = []
 
 let context: AudioContext | null = null
 let master: GainNode | null = null
@@ -200,32 +188,6 @@ export function playSound(name: SoundName) {
       if (audioContext.state === 'running') play()
     })
     .catch(() => {})
-}
-
-export async function playSoundWhenReady(name: SoundName) {
-  if (!enabled) return
-
-  const audioContext = ensureContext()
-  if (!audioContext) return
-
-  if (audioContext.state === 'suspended') {
-    try {
-      await audioContext.resume()
-    } catch {
-      return
-    }
-  }
-
-  if (audioContext.state !== 'running') return
-
-  const buffer = await loadSound(name)
-  if (!buffer) return
-
-  const now = performance.now()
-  if (now - (lastPlayed.get(name) ?? 0) < COOLDOWNS[name]) return
-  if ((active.get(name) ?? 0) >= MAX_CONCURRENT[name]) return
-
-  startPlayback(name, audioContext, buffer)
 }
 
 export function enableSound() {

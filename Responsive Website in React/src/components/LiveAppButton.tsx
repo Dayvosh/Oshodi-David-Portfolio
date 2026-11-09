@@ -1,12 +1,12 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
-import Icon from './Icon'
+import { useEffect, useState } from "react"
+import Icon from "./Icon"
 
-const IOS_URL = 'https://apps.apple.com/ng/app/alat/id1222853161'
+const IOS_URL = "https://apps.apple.com/ng/app/alat/id1222853161"
 const ANDROID_URL =
-  'https://play.google.com/store/apps/details?id=com.wemabank.alat.prod'
-const WEB_URL = 'https://apps.apple.com/ng/app/alat/id1222853161'
+  "https://play.google.com/store/apps/details?id=com.wemabank.alat.prod"
+const WEB_URL = "https://apps.apple.com/ng/app/alat/id1222853161"
 
 function getStoreUrl() {
   const ua = navigator.userAgent
@@ -18,12 +18,16 @@ function getStoreUrl() {
   return WEB_URL
 }
 
-export default function LiveAppButton() {
-  const [href, setHref] = useState(WEB_URL)
+export default function LiveAppButton({
+  href: externalHref,
+}: {
+  href?: string
+}) {
+  const [href, setHref] = useState(externalHref ?? WEB_URL)
 
   useEffect(() => {
-    setHref(getStoreUrl())
-  }, [])
+    setHref(externalHref ?? getStoreUrl())
+  }, [externalHref])
 
   return (
     <a
