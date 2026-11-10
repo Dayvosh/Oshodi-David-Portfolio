@@ -2,9 +2,9 @@
   "name": "oshodi-david-portfolio-root",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix \"Responsive Website in React\" run dev",
-    "build": "npm --prefix \"Responsive Website in React\" run build",
-    "start": "npm --prefix \"Responsive Website in React\" run start",
-    "format": "npm --prefix \"Responsive Website in React\" run format"
+    "dev": "npm --prefix \"responsive-website-in-react\" run dev",
+    "build": "npm --prefix \"responsive-website-in-react\" run build",
+    "start": "npm --prefix \"responsive-website-in-react\" run start",
+    "format": "npm --prefix \"responsive-website-in-react\" run format"
   }
 }

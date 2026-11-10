@@ -16,11 +16,11 @@ Use this workflow when the user supplies a section asset (for example `Assets/Tp
 
 ## Project locations
 
-- Case study data: `Responsive Website in React/src/lib/caseStudies.tsx`
-- Case study renderer: `Responsive Website in React/src/components/CaseStudy.tsx`
-- Global styles: `Responsive Website in React/src/app/globals.css`
+- Case study data: `responsive-website-in-react/src/lib/caseStudies.tsx`
+- Case study renderer: `responsive-website-in-react/src/components/CaseStudy.tsx`
+- Global styles: `responsive-website-in-react/src/app/globals.css`
 - Design assets: `Assets/<StudyName>/<Section>.svg` (for example `Assets/Tpay/Problem.svg`)
-- Public assets used by the site: `Responsive Website in React/public/assets`
+- Public assets used by the site: `responsive-website-in-react/public/assets`
 
 ## Workflow
 
@@ -69,7 +69,7 @@ Use this workflow when the user supplies a section asset (for example `Assets/Tp
    - Replace changed copy with the asset's wording.
    - If removing a previously required field, make the TypeScript type optional and render it conditionally instead of leaving empty markup.
 6. **Do not restyle.** Reuse existing JSX elements and class names.
-7. **Verify** with `npx tsc --noEmit` from `Responsive Website in React`.
+7. **Verify** with `npx tsc --noEmit` from `responsive-website-in-react`.
 
 ## Adding artwork or images from an asset
 
@@ -87,7 +87,7 @@ When the asset includes a picture, phone mockup, or other artwork that is missin
    EOF
    ```
    Text is usually exported as one or more top-level `<path>` elements. Artwork is usually one or more top-level `<g>` elements plus the shared `<defs>`.
-2. **Extract only the artwork** into a new standalone SVG in `Responsive Website in React/public/assets/`. Keep the original element ids so `defs` references (clip paths, patterns) still resolve. Set the new `viewBox` to the artwork's exact bounds.
+2. **Extract only the artwork** into a new standalone SVG in `responsive-website-in-react/public/assets/`. Keep the original element ids so `defs` references (clip paths, patterns) still resolve. Set the new `viewBox` to the artwork's exact bounds.
 3. **Measure the grey container** in the asset. In Figma exports it is usually a large rounded `<rect>` behind the artwork (for example `x=120 y=430 width=925 height=677 rx=32 fill=#F0F0F0`).
 4. **Render the container with existing site conventions, not the asset's raw radius.** The portfolio standard for large case-study media containers is:
    ```css
