@@ -1,8 +1,8 @@
-const A = '/assets'
+const A = "/assets"
 
 export default function Icon({
   file,
-  alt = '',
+  alt = "",
   className,
 }: {
   file: string

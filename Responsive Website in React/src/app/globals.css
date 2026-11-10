@@ -1,16 +1,12 @@
 @import 'tailwindcss';
 
-@font-face { font-family: 'Geist Mono:Medium'; src: url('/fonts/geistmono.ttf') format('truetype'); font-style: normal; font-weight: 500; }
-@font-face { font-family: 'Geist Mono:Regular'; src: url('/fonts/geistmono.ttf') format('truetype'); font-style: normal; font-weight: 400; }
-@font-face { font-family: 'Geist:Medium'; src: url('/fonts/geist.ttf') format('truetype'); font-style: normal; font-weight: 500; }
-@font-face { font-family: 'Geist:Regular'; src: url('/fonts/geist.ttf') format('truetype'); font-style: normal; font-weight: 400; }
-@font-face { font-family: 'Geist:SemiBold'; src: url('/fonts/geist.ttf') format('truetype'); font-style: normal; font-weight: 600; }
-@font-face { font-family: 'Geist:Variable'; src: url('/fonts/geist.ttf') format('truetype'); font-style: normal; font-weight: 100 900; }
+@font-face { font-family: 'Geist'; src: url('/fonts/geist.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Geist Mono'; src: url('/fonts/geistmono.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
 
 :root {
   color: #0a0200;
   background: #fafafa;
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-synthesis: none;
 }
 
@@ -71,7 +67,7 @@ html.dark .app {
   gap: 8px;
   height: 34px;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -.04em;
@@ -128,7 +124,7 @@ html.dark .app .side-nav nav a.active { color: #ff7a4d; }
   align-items: center;
   gap: 8px;
   color: var(--secondary);
-  font-family: 'Geist Mono:Medium', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 17px;
   font-weight: 500;
   letter-spacing: -.04em;
@@ -216,7 +212,7 @@ main {
   height: 44px;
   padding: 0 14px;
   border-radius: 8px;
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   letter-spacing: -.42px;
 }
@@ -235,21 +231,22 @@ main {
 }
 .hero-title > p {
   color: var(--secondary);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 32px;
   line-height: 60px;
   letter-spacing: -1.92px;
 }
 .hero h1 {
   max-width: 630px;
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
   font-size: clamp(70px, 7.36vw, 106px);
   line-height: 1;
   letter-spacing: -.06em;
 }
 .hero-copy { display: flex; flex-direction: column; justify-content: space-between; padding-top: 72px; gap: 40px; }
-.hero-copy > p { color: var(--secondary); font-family: 'Geist:Variable', Arial, sans-serif; font-weight: 350; font-size: 14px; line-height: 24px; letter-spacing: -.42px; }
-.sticker { position: absolute; transform: rotate(-12deg); color: white; font-family: 'Geist:SemiBold'; text-align: center; }
+.hero-copy > p { color: var(--secondary); font-family: 'Geist', Arial, sans-serif; font-weight: 350; font-size: 14px; line-height: 24px; letter-spacing: -.42px; }
+.sticker { position: absolute; transform: rotate(-12deg); color: white; font-family: 'Geist'; text-align: center; }
 .sticker img { width: 100%; height: 100%; display: block; object-fit: contain; }
 .sticker span { position: absolute; inset: 0; display: grid; place-content: center; font-size: 11px; line-height: 12px; }
 .interaction { width: 80px; height: 36px; top: 105px; right: 155px; }
@@ -257,10 +254,10 @@ main {
 
 .work { padding: 100px clamp(32px, 12.65vw, 182px); }
 .work-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; margin-bottom: 40px; }
-.work-heading h2 { font-family: 'Geist:Medium'; font-size: 24px; line-height: 24px; letter-spacing: -.72px; }
+.work-heading h2 { font-family: 'Geist'; font-size: 24px; line-height: 24px; letter-spacing: -.72px; }
 .tabs { height: 40px; padding: 3px; display: flex; gap: 5px; background: var(--soft); border-radius: 12px; }
 .tabs button { border: 0; background: transparent; padding: 0 10px; border-radius: 8px; color: var(--secondary); font-size: 14px; letter-spacing: -.56px; }
-.tabs button.selected { background: var(--card); color: var(--primary); box-shadow: 0 3px 6px #0000000a; font-family: 'Geist:Medium'; }
+.tabs button.selected { background: var(--card); color: var(--primary); box-shadow: 0 3px 6px #0000000a; font-family: 'Geist'; }
 .project-list { display: flex; flex-direction: column; gap: 40px; }
 .showcase-grid {
   display: grid;
@@ -419,9 +416,9 @@ main {
 .thr-theme { background: #fc6435; align-items: end; }
 .project-copy { display: flex; flex-direction: column; gap: 22px; padding: 22px 16px 12px; }
 .project-copy > div:last-child { display: flex; flex-direction: column; gap: 10px; }
-.project-copy h3 { font-family: 'Geist:SemiBold'; font-size: 20px; line-height: 24px; letter-spacing: -.6px; }
-.project-copy p { color: var(--secondary); font-family: 'Geist:Regular', Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; letter-spacing: -.02em; }
-.meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #999; font-family: 'Geist Mono:Regular'; font-size: 12px; letter-spacing: -.48px; }
+.project-copy h3 { font-family: 'Geist'; font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: -.6px; }
+.project-copy p { color: var(--secondary); font-family: 'Geist', Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; letter-spacing: -.02em; }
+.meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #999; font-family: 'Geist Mono'; font-size: 12px; letter-spacing: -.48px; }
 .meta i { width: 3px; height: 3px; border-radius: 50%; background: #999; }
 
 .app.dark .side-nav nav a:not(.active) img,
@@ -475,20 +472,20 @@ html.dark .app .mobile-menu nav a.active img {
 .chart { height: 155px; display: flex; align-items: flex-end; gap: 20px; border-left: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 28px; }
 .chart div { flex: 1; border-radius: 3px 3px 0 0; background: #83d178; }.chart div:nth-child(1) { height: 40%; }.chart div:nth-child(2) { height: 65%; }.chart div:nth-child(3) { height: 52%; }.chart div:nth-child(4) { height: 85%; }.chart div:nth-child(5) { height: 70%; }
 .table-lines { margin-top: 20px; display: grid; gap: 8px; }.table-lines i { height: 7px; border-radius: 3px; background: #f1f1f1; }
-.matrix-title { margin: 18px 0 8px; font-size: 8px; font-family: 'Geist:Medium'; }
+.matrix-title { margin: 18px 0 8px; font-size: 8px; font-family: 'Geist'; }
 .matrix { height: 220px; display: grid; grid-template-columns: repeat(3, 1fr); overflow: hidden; border-radius: 5px; }.matrix i { opacity: .85; border: 1px solid #fff8; }
 
 footer { position: relative; z-index: 30; padding: 100px 100px 56px; background: #fc6435; color: white; }
 .footer-main { max-width: 856px; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 65px; }
 .footer-intro { text-align: center; }
-.footer-intro h2 { font-family: 'Geist:SemiBold'; font-size: 60px; line-height: 60px; letter-spacing: -1.8px; }
-.footer-intro p { margin-top: 40px; font-family: 'Geist:Regular'; font-size: 16px; line-height: 20px; letter-spacing: -.48px; }
-.email-pill { width: 100%; padding: 10px 40px; border-radius: 24px; background: #0a0200; font-family: 'Geist:SemiBold'; font-size: clamp(34px, 4.16vw, 60px); line-height: 100px; letter-spacing: -.03em; text-align: center; white-space: nowrap; }
+.footer-intro h2 { font-family: 'Geist'; font-weight: 600; font-size: 60px; line-height: 60px; letter-spacing: -1.8px; }
+.footer-intro p { margin-top: 40px; font-family: 'Geist'; font-size: 16px; line-height: 20px; letter-spacing: -.48px; }
+.email-pill { width: 100%; padding: 10px 40px; border-radius: 24px; background: #0a0200; font-family: 'Geist'; font-size: clamp(34px, 4.16vw, 60px); line-height: 100px; letter-spacing: -.03em; text-align: center; white-space: nowrap; }
 .socials { display: flex; gap: 8px; margin-top: 35px; }
 .socials a { display: grid; place-items: center; width: 184px; height: 184px; border-radius: 24px; background: #ffffff1f; transition: background .2s, transform .2s; }
 .socials a:hover { background: #ffffff30; transform: translateY(-3px); }
 .socials img { width: 110px; height: 110px; }
-.footer-bottom { margin-top: 100px; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono:Medium'; font-size: 14px; letter-spacing: -.84px; }
+.footer-bottom { margin-top: 100px; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono'; font-size: 14px; letter-spacing: -.84px; }
 .footer-bottom span, .footer-bottom a { display: flex; align-items: center; gap: 4px; }
 .footer-bottom img { width: 20px; height: 20px; }.footer-bottom span img { width: 24px; height: 24px; }
 
@@ -691,7 +688,7 @@ html.dark .case-app .theme-switch button img {
   gap: 11px;
   height: 34px;
   color: var(--primary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -.04em;
@@ -703,7 +700,7 @@ html.dark .case-app .theme-switch button img {
   align-items: center;
   height: 34px;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -.04em;
@@ -740,7 +737,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-eyebrow {
   margin: 0;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   line-height: 20px;
   letter-spacing: 0;
@@ -750,7 +747,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   top: -3.5px;
   margin: 12px 0 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 40px;
   line-height: 48px;
   letter-spacing: -.03em;
@@ -758,7 +755,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-subtext {
   margin: 14px 0 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -776,7 +773,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   border-radius: 8px;
   background: var(--soft);
   color: var(--primary);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   letter-spacing: -.03em;
   transition: background .2s, border-color .2s;
@@ -817,6 +814,16 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   width: 100%;
   height: auto;
 }
+.case-visual .tpay-image-wrap {
+  width: 800px;
+  max-width: 100%;
+  height: auto;
+}
+.case-visual .tpay-image-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .case-visual > .project-visual.truck-theme { background: #0c9951; }
 .case-visual > .project-visual.tpay-theme { background: #57bd3e; }
 .case-visual > .project-visual.thr-theme { background: #fc6435; }
@@ -847,7 +854,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-meta-label {
   margin: 0;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: -.04em;
@@ -855,7 +862,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-meta-value {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -870,7 +877,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-final-product-title {
   margin: 12px 0 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 32px;
   line-height: 40px;
   letter-spacing: -.03em;
@@ -883,7 +890,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-goals-copy p {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -891,17 +898,17 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 }
 .case-about-copy p.case-about-emphasis {
   color: var(--emphasis);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
 }
 .case-about-copy p strong {
   color: var(--emphasis);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 600;
 }
 .case-goals-copy p.case-goals-emphasis {
   color: var(--emphasis);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
 }
 .case-about-copy p + p,
@@ -939,7 +946,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-problem-quote-text {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -960,7 +967,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-problem-quote-name {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -.03em;
@@ -968,7 +975,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-problem-quote-role {
   margin: 2px 0 0;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   line-height: 20px;
   letter-spacing: -.04em;
@@ -1008,7 +1015,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-core-problems > h3 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1022,7 +1029,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-core-problem h4 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1030,7 +1037,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-core-problem p {
   margin: 8px 0 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1059,7 +1066,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   border-radius: 6px;
   background: #0a0200;
   color: #fff;
-  font-family: 'Geist Mono:Medium', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   line-height: 32px;
   letter-spacing: -.56px;
@@ -1088,7 +1095,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-design-step h3 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1097,7 +1104,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-design-step-copy p {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1109,7 +1116,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   display: inline-block;
   margin-top: 20px;
   color: #fc6435;
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -.03em;
@@ -1138,7 +1145,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-design-intro p {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1161,7 +1168,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-design-subhead {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1170,7 +1177,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-design-flow-title {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1194,7 +1201,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   height: 32px;
   padding: 0 16px;
   border-radius: 6px;
-  font-family: 'Geist Mono:Medium', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   line-height: 32px;
   letter-spacing: -.56px;
@@ -1220,7 +1227,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   border-radius: 12px;
   background: #fff;
   color: #4d4d4d;
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1246,7 +1253,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-final-illustrations h3 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 20px;
   line-height: 28px;
   letter-spacing: 0;
@@ -1254,7 +1261,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-final-block-copy {
   margin: 16px 0 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1298,7 +1305,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-final-improvements h4 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1308,7 +1315,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   padding: 0;
   list-style: none;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1332,7 +1339,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   background: var(--primary);
 }
 .case-final-improvements strong {
-  font-family: 'Geist:Medium', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-weight: 500;
   color: var(--primary);
 }
@@ -1360,7 +1367,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   max-width: 903px;
   margin: 0 0 24px;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1410,7 +1417,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-conclusion-title {
   margin: 12px 0 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 32px;
   line-height: 40px;
   letter-spacing: -.03em;
@@ -1424,7 +1431,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-conclusion-body p {
   margin: 0;
   color: var(--body);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1432,7 +1439,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 }
 .case-conclusion-emphasis {
   color: var(--emphasis);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
 }
 
@@ -1442,7 +1449,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-more-title {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 24px;
   line-height: 24px;
   letter-spacing: -.72px;
@@ -1551,7 +1558,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   flex-wrap: wrap;
   gap: 8px;
   color: var(--muted);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   letter-spacing: -.48px;
 }
@@ -1570,7 +1577,8 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-more-body h3 {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -.6px;
@@ -1578,7 +1586,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-more-body p {
   margin: 0;
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1625,7 +1633,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   .case-mobile-header nav::-webkit-scrollbar { display: none; }
   .case-mobile-header nav a {
     color: var(--secondary);
-    font-family: 'Geist Mono:Regular', monospace;
+    font-family: 'Geist Mono', monospace;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
@@ -1762,7 +1770,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .about-title {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   line-height: 1.12;
   letter-spacing: -.04em;
@@ -1771,7 +1779,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .about-intro {
   margin: 42px 0 0;
   color: var(--primary);
-  font-family: 'Geist:Medium', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -1787,7 +1795,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .about-copy p {
   margin: 0;
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1797,10 +1805,12 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .about-gallery {
   position: relative;
   margin-top: 64px;
+  --gallery-fade: clamp(80px, 12vw, 160px);
 }
 .about-gallery-viewport {
   position: relative;
   display: flex;
+  align-items: flex-start;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -1811,6 +1821,8 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   -webkit-overflow-scrolling: touch;
   cursor: grab;
   user-select: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--gallery-fade), black calc(100% - var(--gallery-fade)), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black var(--gallery-fade), black calc(100% - var(--gallery-fade)), transparent 100%);
 }
 .about-gallery-viewport::-webkit-scrollbar { display: none; }
 .about-gallery-viewport.grabbing { cursor: grabbing; }
@@ -1831,21 +1843,17 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   -webkit-user-drag: none;
   user-select: none;
 }
-.about-gallery-fade {
+.about-gallery-tile--contain {
+  position: relative;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+.about-gallery-tile--contain img {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(80px, 12vw, 160px);
-  pointer-events: none;
-  z-index: 2;
-}
-.about-gallery-fade--left {
-  left: 0;
-  background: linear-gradient(to right, var(--page) 0%, var(--page) 35%, transparent 100%);
-}
-.about-gallery-fade--right {
-  right: 0;
-  background: linear-gradient(to left, var(--page) 0%, var(--page) 35%, transparent 100%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-outside {
@@ -1854,7 +1862,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .about-outside p {
   margin: 0;
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1864,10 +1872,9 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 @media (max-width: 760px) {
   .about-content { padding: 56px 20px 80px; }
   .about-title { font-size: clamp(32px, 10vw, 44px); line-height: 1.1; }
-  .about-gallery { margin-top: 48px; }
+  .about-gallery { margin-top: 48px; --gallery-fade: clamp(56px, 14vw, 96px); }
   .about-gallery-viewport { padding: 0; gap: 16px; }
   .about-gallery-tile { width: min(280px, 72vw); height: auto; aspect-ratio: 1; border-radius: 12px; }
-  .about-gallery-fade { width: clamp(40px, 8vw, 80px); }
   .about-outside { margin-top: 48px; }
 }
 
@@ -1875,7 +1882,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .resume-intro {
   margin: 24px 0 0;
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1894,7 +1901,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   border-radius: 8px;
   background: var(--soft);
   color: var(--primary);
-  font-family: 'Geist:Medium', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   letter-spacing: -.03em;
 }
@@ -1907,7 +1914,7 @@ html.dark .app .resume-download img { filter: invert(1); }
 .resume-section-title {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 24px;
   line-height: 24px;
   letter-spacing: -.72px;
@@ -1932,7 +1939,7 @@ html.dark .app .resume-download img { filter: invert(1); }
 .resume-job-company {
   margin: 0;
   color: var(--primary);
-  font-family: 'Geist:SemiBold', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1940,7 +1947,7 @@ html.dark .app .resume-download img { filter: invert(1); }
 .resume-job-role {
   margin: 8px 0 0;
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -1950,7 +1957,7 @@ html.dark .app .resume-download img { filter: invert(1); }
   flex: none;
   padding-top: 2px;
   color: var(--secondary);
-  font-family: 'Geist Mono:Regular', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 13px;
   line-height: 24px;
   letter-spacing: -.04em;
@@ -1966,14 +1973,14 @@ html.dark .app .resume-download img { filter: invert(1); }
 }
 .resume-contact-label {
   color: var(--secondary);
-  font-family: 'Geist:Regular', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -.03em;
 }
 .resume-contact-value {
   color: var(--primary);
-  font-family: 'Geist:Medium', Arial, sans-serif;
+  font-family: 'Geist', Arial, sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -.03em;

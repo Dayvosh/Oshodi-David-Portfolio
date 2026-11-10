@@ -1,15 +1,52 @@
-import type { Metadata } from 'next'
-import type { ReactNode } from 'react'
-import SoundProvider from '@/components/SoundProvider'
-import './globals.css'
+import type { Metadata, Viewport } from "next"
+import type { ReactNode } from "react"
+import SoundProvider from "@/components/SoundProvider"
+import { defaultDescription, siteName, siteUrl } from "@/lib/seo"
+import "./globals.css"
 
 export const metadata: Metadata = {
-  title: 'Oshodi David — Product Designer',
-  description:
-    'Delivers a responsive website that adapts seamlessly across mobile, tablet, and laptop devices, ensuring optimal user experience on any screen size.',
+  metadataBase: new URL(siteUrl),
+  title: "Oshodi David — Product Designer",
+  description: defaultDescription,
+  applicationName: siteName,
+  authors: [{ name: "Oshodi David" }],
+  creator: "Oshodi David",
   icons: {
-    icon: '/Favicon.svg',
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
+  openGraph: {
+    type: "website",
+    siteName,
+    title: "Oshodi David — Product Designer",
+    description: defaultDescription,
+    url: "/",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Oshodi David — Product Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Oshodi David — Product Designer",
+    description: defaultDescription,
+    images: ["/og-image.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#171513" },
+  ],
 }
 
 export default function RootLayout({

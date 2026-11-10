@@ -1,20 +1,25 @@
-'use client'
+"use client" /* <div className="sticker interaction">
+          <Icon file="b59f3.svg" />
+          <span>INTERACTION<br />DESIGN</span>
+        </div>
+        <div className="sticker human">
+          <img src={`${A}/HCD.svg`} alt="Human Centered Design" />
+        </div> */
+import Link from "next/link"
+import { useEffect, useState, type ReactNode } from "react"
+import BankingShowcase from "./BankingShowcase"
+import Footer from "./Footer"
+import Icon from "./Icon"
+import NavIcon from "./NavIcon"
+import SoundSwitch from "./SoundSwitch"
+import ThemeSwitch from "./ThemeSwitch"
+import ThrPreview from "./ThrPreview"
+import TpayPreview from "./TpayPreview"
+import TopBar from "./TopBar"
+import TruckPreview from "./TruckPreview"
+import { useTheme } from "./useTheme"
 
-import Link from 'next/link'
-import { useEffect, useState, type ReactNode } from 'react'
-import BankingShowcase from './BankingShowcase'
-import Footer from './Footer'
-import Icon from './Icon'
-import NavIcon from './NavIcon'
-import SoundSwitch from './SoundSwitch'
-import ThemeSwitch from './ThemeSwitch'
-import ThrPreview from './ThrPreview'
-import TpayPreview from './TpayPreview'
-import TopBar from './TopBar'
-import TruckPreview from './TruckPreview'
-import { useTheme } from './useTheme'
-
-const A = '/assets'
+const A = "/assets"
 
 type Project = {
   title: string
@@ -27,40 +32,40 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'ALATbyWEMA',
-    year: '2025',
-    category: 'Banking',
+    title: "ALATbyWEMA",
+    year: "2025",
+    category: "Banking",
     description:
-      'Reimagining payments to make everyday banking simpler, faster, and more trustworthy',
-    theme: 'banking',
-    href: '/work/alatbywema',
+      "Reimagining payments to make everyday banking simpler, faster, and more trustworthy",
+    theme: "banking",
+    href: "/work/alatbywema",
   },
   {
-    title: 'Truck App',
-    year: '2024',
-    category: 'Logistics',
+    title: "Truck App",
+    year: "2024",
+    category: "Logistics",
     description:
-      'Streamlining daily tasks to help drivers manage deliveries, navigate routes, and stay informed.',
-    theme: 'truck',
-    href: '/work/truck-app',
+      "Streamlining daily tasks to help drivers manage deliveries, navigate routes, and stay informed.",
+    theme: "truck",
+    href: "/work/truck-app",
   },
   {
-    title: 'Tpay',
-    year: '2025',
-    category: 'Fintech',
+    title: "Tpay",
+    year: "2025",
+    category: "Fintech",
     description:
-      'Simplifying personal finance and business financial operations in one platform',
-    theme: 'tpay',
-    href: '/work/tpay',
+      "Simplifying personal finance and business financial operations in one platform",
+    theme: "tpay",
+    href: "/work/tpay",
   },
   {
-    title: 'THR',
-    year: '2025',
-    category: 'Human Resource (HR)',
+    title: "THR",
+    year: "2025",
+    category: "Human Resource (HR)",
     description:
-      'Redesigning the digital experience for a logistics platform aiming at improving the day to day for truck drivers',
-    theme: 'thr',
-    href: '/work/thr',
+      "Redesigning the digital experience for a logistics platform aiming at improving the day to day for truck drivers",
+    theme: "thr",
+    href: "/work/thr",
   },
 ]
 
@@ -68,7 +73,7 @@ function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
       <a className="portrait" href="#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <nav>
         <a className="active" href="#work">
@@ -100,7 +105,7 @@ function MobileHeader({
   return (
     <header className="mobile-header">
       <a className="portrait" href="#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <div className="mobile-actions">
         <ThemeSwitch dark={dark} setDark={setDark} />
@@ -129,17 +134,16 @@ function MobileHeader({
   )
 }
 
-function MobileMenu({
-  open,
-  onClose,
-}: {
+interface MobileMenuProps {
   open: boolean
   onClose: () => void
-}) {
+}
+
+function MobileMenu({ open, onClose }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return
     const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = previous
     }
@@ -147,14 +151,19 @@ function MobileMenu({
 
   return (
     <div
-      className={`mobile-menu${open ? ' open' : ''}`}
+      className={`mobile-menu${open ? " open" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
     >
       <div className="mobile-menu-top">
-        <a className="portrait" href="#top" aria-label="Back to top" onClick={onClose}>
-          <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <a
+          className="portrait"
+          href="#top"
+          aria-label="Back to top"
+          onClick={onClose}
+        >
+          <img src={`${A}/portrait.webp`} alt="Oshodi David" />
         </a>
         <button
           className="menu-close"
@@ -204,13 +213,7 @@ function Hero() {
       <div className="hero-title">
         <p>Oshodi David is a</p>
         <h1>Product Designer</h1>
-        {/* <div className="sticker interaction">
-          <Icon file="b59f3.svg" />
-          <span>INTERACTION<br />DESIGN</span>
-        </div>
-        <div className="sticker human">
-          <img src={`${A}/HCD.svg`} alt="Human Centered Design" />
-        </div> */}
+        {}
       </div>
       <div className="hero-copy">
         <p>
@@ -249,16 +252,28 @@ function PhoneShell({ children }: { children: ReactNode }) {
 }
 
 function ProjectVisual({ theme }: { theme: string }) {
-  if (theme === 'banking') {
+  if (theme === "banking") {
     return <BankingShowcase />
   }
-  if (theme === 'truck') {
-    return <div className="project-visual truck-theme"><TruckPreview /></div>
+  if (theme === "truck") {
+    return (
+      <div className="project-visual truck-theme">
+        <TruckPreview />
+      </div>
+    )
   }
-  if (theme === 'tpay') {
-    return <div className="project-visual tpay-theme"><TpayPreview /></div>
+  if (theme === "tpay") {
+    return (
+      <div className="project-visual tpay-theme">
+        <TpayPreview />
+      </div>
+    )
   }
-  return <div className="project-visual thr-theme"><ThrPreview /></div>
+  return (
+    <div className="project-visual thr-theme">
+      <ThrPreview />
+    </div>
+  )
 }
 
 function ProjectCard({ project }: { project: Project }) {
@@ -267,8 +282,10 @@ function ProjectCard({ project }: { project: Project }) {
       <ProjectVisual theme={project.theme} />
       <div className="project-copy">
         <div className="meta">
-          <span>{project.year}</span><i />
-          <span>{project.category}</span><i />
+          <span>{project.year}</span>
+          <i />
+          <span>{project.category}</span>
+          <i />
           <span>Case study</span>
         </div>
         <div>
@@ -291,53 +308,58 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 type ShowcaseItem = {
-  type: 'video' | 'image' | 'empty'
+  type: "video" | "image" | "empty"
   src?: string
-  fit?: 'cover' | 'contain'
+  fit?: "cover" | "contain"
   bg?: string
 }
 
 const showcaseItems: ShowcaseItem[] = [
-  { type: 'video', src: `${A}/showcase/apple.mp4` },
-  { type: 'image', src: `${A}/showcase/cs-1.webp` },
-  { type: 'image', src: `${A}/showcase/cs-9.webp` },
-  { type: 'image', src: `${A}/showcase/dark-8.webp` },
-  { type: 'image', src: `${A}/showcase/ecom-9.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225510.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225512.webp` },
-  { type: 'image', src: `${A}/showcase/h2.webp` },
-  { type: 'image', src: `${A}/showcase/img-1176.webp` },
-  { type: 'image', src: `${A}/showcase/img-1178.webp` },
-  { type: 'image', src: `${A}/showcase/instagram-3.webp` },
-  { type: 'image', src: `${A}/showcase/instagram-4.webp` },
-  { type: 'image', src: `${A}/showcase/of-11.webp` },
-  { type: 'image', src: `${A}/showcase/of-2.webp` },
-  { type: 'image', src: `${A}/showcase/onboard-2.webp` },
-  { type: 'image', src: `${A}/showcase/profile-1.webp` },
-  { type: 'image', src: `${A}/showcase/sn2.webp` },
-  { type: 'image', src: `${A}/showcase/sn4.webp` },
-  { type: 'image', src: `${A}/showcase/stats-1.webp` },
-  { type: 'image', src: `${A}/showcase/deduction.webp` },
-  { type: 'image', src: `${A}/showcase/form-builder-2.webp` },
-  { type: 'image', src: `${A}/showcase/form-builder-3.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225355.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225357.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225359.webp` },
-  { type: 'image', src: `${A}/showcase/frame-2147225363.webp`, fit: 'contain' },
-  { type: 'image', src: `${A}/showcase/m1.webp` },
-  { type: 'image', src: `${A}/showcase/m4.webp` },
-  { type: 'image', src: `${A}/showcase/of.webp` },
-  { type: 'video', src: `${A}/showcase/q3.mp4`, fit: 'contain', bg: '#e6e6e6' },
-  { type: 'video', src: `${A}/showcase/scene-1.mp4`, fit: 'contain', bg: '#d36700' },
-  { type: 'image', src: `${A}/showcase/tfleet-dash.webp` },
-  { type: 'image', src: `${A}/showcase/tpay-mobile-1-1.webp` },
+  { type: "video", src: `${A}/showcase/apple.mp4` },
+  { type: "image", src: `${A}/showcase/cs-1.webp` },
+  { type: "image", src: `${A}/showcase/cs-9.webp` },
+  { type: "image", src: `${A}/showcase/dark-8.webp` },
+  { type: "image", src: `${A}/showcase/ecom-9.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225510.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225512.webp` },
+  { type: "image", src: `${A}/showcase/h2.webp` },
+  { type: "image", src: `${A}/showcase/img-1176.webp` },
+  { type: "image", src: `${A}/showcase/img-1178.webp` },
+  { type: "image", src: `${A}/showcase/instagram-3.webp` },
+  { type: "image", src: `${A}/showcase/instagram-4.webp` },
+  { type: "image", src: `${A}/showcase/of-11.webp` },
+  { type: "image", src: `${A}/showcase/of-2.webp` },
+  { type: "image", src: `${A}/showcase/onboard-2.webp` },
+  { type: "image", src: `${A}/showcase/profile-1.webp` },
+  { type: "image", src: `${A}/showcase/sn2.webp` },
+  { type: "image", src: `${A}/showcase/sn4.webp` },
+  { type: "image", src: `${A}/showcase/stats-1.webp` },
+  { type: "image", src: `${A}/showcase/deduction.webp` },
+  { type: "image", src: `${A}/showcase/form-builder-2.webp` },
+  { type: "image", src: `${A}/showcase/form-builder-3.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225355.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225357.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225359.webp` },
+  { type: "image", src: `${A}/showcase/frame-2147225363.webp`, fit: "contain" },
+  { type: "image", src: `${A}/showcase/m1.webp` },
+  { type: "image", src: `${A}/showcase/m4.webp` },
+  { type: "image", src: `${A}/showcase/of.webp` },
+  { type: "video", src: `${A}/showcase/q3.mp4`, fit: "contain", bg: "#e6e6e6" },
+  {
+    type: "video",
+    src: `${A}/showcase/scene-1.mp4`,
+    fit: "contain",
+    bg: "#d36700",
+  },
+  { type: "image", src: `${A}/showcase/tfleet-dash.webp` },
+  { type: "image", src: `${A}/showcase/tpay-mobile-1-1.webp` },
 ]
 
 function ShowcaseGrid() {
   const mediaClass = (item: ShowcaseItem) =>
-    `showcase-media${item.fit === 'contain' ? ' showcase-media--contain' : ''}`
+    `showcase-media${item.fit === "contain" ? " showcase-media--contain" : ""}`
   const ordered = [...showcaseItems].sort(
-    (a, b) => Number(a.type !== 'video') - Number(b.type !== 'video'),
+    (a, b) => Number(a.type !== "video") - Number(b.type !== "video"),
   )
   return (
     <div className="showcase-grid">
@@ -347,7 +369,7 @@ function ShowcaseGrid() {
           key={index}
           style={item.bg ? { background: item.bg } : undefined}
         >
-          {item.type === 'video' && (
+          {item.type === "video" && (
             <video
               className={mediaClass(item)}
               src={item.src}
@@ -355,10 +377,17 @@ function ShowcaseGrid() {
               muted
               loop
               playsInline
+              preload="metadata"
             />
           )}
-          {item.type === 'image' && (
-            <img className={mediaClass(item)} src={item.src} alt="" />
+          {item.type === "image" && (
+            <img
+              className={mediaClass(item)}
+              src={item.src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
           )}
         </div>
       ))}
@@ -367,23 +396,31 @@ function ShowcaseGrid() {
 }
 
 function Work() {
-  const [tab, setTab] = useState<'cases' | 'showcase'>('cases')
+  const [tab, setTab] = useState<"cases" | "showcase">("cases")
   return (
     <section className="work" id="work">
       <div className="work-heading">
         <h2>My Works</h2>
         <div className="tabs">
-          <button className={tab === 'cases' ? 'selected' : ''} onClick={() => setTab('cases')}>
+          <button
+            className={tab === "cases" ? "selected" : ""}
+            onClick={() => setTab("cases")}
+          >
             Case Studies
           </button>
-          <button className={tab === 'showcase' ? 'selected' : ''} onClick={() => setTab('showcase')}>
+          <button
+            className={tab === "showcase" ? "selected" : ""}
+            onClick={() => setTab("showcase")}
+          >
             UI Showcase
           </button>
         </div>
       </div>
-      {tab === 'cases' ? (
+      {tab === "cases" ? (
         <div className="project-list">
-          {projects.map((project) => <ProjectCard project={project} key={project.title} />)}
+          {projects.map((project) => (
+            <ProjectCard project={project} key={project.title} />
+          ))}
         </div>
       ) : (
         <ShowcaseGrid />

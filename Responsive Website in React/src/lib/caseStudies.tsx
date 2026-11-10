@@ -21,7 +21,10 @@ export interface CaseProblemItem {
 export interface CaseDesignStep {
   title: string
   copy: string[]
-  link?: { label: string; href: string }
+  link?: {
+    label: string
+    href: string
+  }
 }
 
 export interface CaseDesignFlow {
@@ -127,10 +130,16 @@ export interface CaseStudyData {
     eyebrow: string
     title: string
     intro?: string[]
-    startVisual?: { src: string; alt: string }
+    startVisual?: {
+      src: string
+      alt: string
+    }
     flowSection?: CaseDesignFlowSection
     steps?: CaseDesignStep[]
-    visual?: { src: string; alt: string }
+    visual?: {
+      src: string
+      alt: string
+    }
   }
   finalProduct: {
     eyebrow: string
@@ -251,27 +260,27 @@ const alatbywema: CaseStudyData = {
       "The problems identified were informed by multiple sources, including customer ratings and reviews on app stores, complaints shared across social media, and direct feedback from ALAT customers who use the mobile banking app frequently",
     screenshots: [
       {
-        src: `${A}/alat-review-1.png`,
+        src: `${A}/alat-review-1.webp`,
         alt: "Customer review: Horrible app, do not recommend",
       },
       {
-        src: `${A}/alat-review-2.png`,
+        src: `${A}/alat-review-2.webp`,
         alt: "Customer review: Transfer exposes balance",
       },
       {
-        src: `${A}/alat-review-3.png`,
+        src: `${A}/alat-review-3.webp`,
         alt: "Customer review: Don't use the ALAT app to buy electricity",
       },
       {
-        src: `${A}/alat-review-4.png`,
+        src: `${A}/alat-review-4.webp`,
         alt: "Customer review: Worst bank experience ever, avoid",
       },
       {
-        src: `${A}/alat-review-5.png`,
+        src: `${A}/alat-review-5.webp`,
         alt: "Customer review: Transfer issues from Okuku, Osun state",
       },
       {
-        src: `${A}/alat-review-1.png`,
+        src: `${A}/alat-review-1.webp`,
         alt: "Customer review of the ALAT app",
       },
     ],
@@ -302,15 +311,15 @@ const alatbywema: CaseStudyData = {
       label: "OLD UI",
       images: [
         {
-          src: `${A}/alat-old-ui-1.png`,
+          src: `${A}/alat-old-ui-1.webp`,
           alt: "Previous ALAT app interface, screen one",
         },
         {
-          src: `${A}/alat-old-ui-2.png`,
+          src: `${A}/alat-old-ui-2.webp`,
           alt: "Previous ALAT app interface, screen two",
         },
         {
-          src: `${A}/alat-old-ui-3.png`,
+          src: `${A}/alat-old-ui-3.webp`,
           alt: "Previous ALAT app interface, screen three",
         },
       ],
@@ -352,7 +361,7 @@ const alatbywema: CaseStudyData = {
       },
     ],
     visual: {
-      src: `${A}/alat-design-process-visual.png`,
+      src: `${A}/alat-design-process-visual.webp`,
       alt: "ALAT send money and transfer success screens",
     },
   },
@@ -381,7 +390,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a flexible layout that can accommodate additional payment services as the product grows.",
           },
         ],
-        image: `${A}/Payment Hub.svg`,
+        image: `${A}/Payment Hub.webp`,
       },
       {
         title: "Local Transfer",
@@ -405,8 +414,8 @@ const alatbywema: CaseStudyData = {
           },
         ],
         visuals: 2,
-        image: `${A}/Local Transfer 1.svg`,
-        image2: `${A}/Local transfer 2.png`,
+        image: `${A}/Local Transfer 1.webp`,
+        image2: `${A}/Local transfer 2.webp`,
       },
       {
         title: "Airtime/Data",
@@ -421,7 +430,7 @@ const alatbywema: CaseStudyData = {
             body: "Displayed previous recipients automatically as users enter a phone number, making repeat purchases quicker and easier.",
           },
         ],
-        image: `${A}/Data.png`,
+        image: `${A}/Data.webp`,
       },
       {
         title: "Bill Payment",
@@ -440,7 +449,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a flexible layout that supports additional billers and payment categories as the platform grows.",
           },
         ],
-        image: `${A}/Bill Payment.svg`,
+        image: `${A}/Bill Payment.webp`,
       },
       {
         title: "Gift card/Evoucher",
@@ -454,7 +463,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a well-structured layout that makes gift cards easier to browse and find.",
           },
         ],
-        image: `${A}/Gift card.svg`,
+        image: `${A}/Gift card.webp`,
       },
     ],
   },
@@ -517,7 +526,7 @@ const truckApp: CaseStudyData = {
       text: "“The app feels outdated, we want a modern and engaging experience. Our drivers need quick access to the information they rely on every day, so we also want to reduce the number of clicks needed to get to key information”",
       author: "Oluwafemi Emmanuel",
       role: "Product Owner @Truck App",
-      image: `${A}/truck-product-owner.png`,
+      image: `${A}/truck-product-owner.webp`,
     },
     coreProblems: [
       {
@@ -546,15 +555,15 @@ const truckApp: CaseStudyData = {
       variant: "truck",
       images: [
         {
-          src: `${A}/truck-old-ui-1.png`,
+          src: `${A}/truck-old-ui-1.webp`,
           alt: "Old Truck App login screen",
         },
         {
-          src: `${A}/truck-old-ui-2.png`,
+          src: `${A}/truck-old-ui-2.webp`,
           alt: "Old Truck App trips screen",
         },
         {
-          src: `${A}/truck-old-ui-3.png`,
+          src: `${A}/truck-old-ui-3.webp`,
           alt: "Old Truck App trucks near me screen",
         },
       ],
@@ -577,7 +586,7 @@ const truckApp: CaseStudyData = {
       "I started by reviewing the product's vision and goals with the Product Owner. He walked me through the PRD and other project documentation, then took me through the existing Figma screens, highlighting the issues he had identified with the current experience. This gave me the initial context I needed to understand the product, the problems in the old design, and where I needed to dig deeper.",
     ],
     startVisual: {
-      src: `${A}/truck-design-start.png`,
+      src: `${A}/truck-design-start.webp`,
       alt: "Figma screens and product requirement document reviewed for the Truck App redesign",
     },
     flowSection: {
@@ -686,13 +695,13 @@ const truckApp: CaseStudyData = {
             layout: "pair",
             images: [
               {
-                src: `${A}/truck-final-nav-old.png`,
+                src: `${A}/truck-final-nav-old.webp`,
                 alt: "Truck App old bottom navigation design",
                 label: "OLD DESIGN",
                 labelTop: "55.63%",
               },
               {
-                src: `${A}/truck-final-nav-new.png`,
+                src: `${A}/truck-final-nav-new.webp`,
                 alt: "Truck App redesigned bottom navigation with clear labels",
                 label: "NEW DESIGN",
                 labelTop: "55.63%",
@@ -706,7 +715,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-nav-explore.png`,
+                src: `${A}/truck-final-nav-explore.webp`,
                 alt: "Explorations of different navigation styles and color variations",
               },
             ],
@@ -735,13 +744,13 @@ const truckApp: CaseStudyData = {
             layout: "pair-wide",
             images: [
               {
-                src: `${A}/truck-final-home-old.png`,
+                src: `${A}/truck-final-home-old.webp`,
                 alt: "Truck App old home page design",
                 label: "OLD DESIGN",
                 labelTop: "3.24%",
               },
               {
-                src: `${A}/truck-final-home-new.png`,
+                src: `${A}/truck-final-home-new.webp`,
                 alt: "Truck App redesigned home page with trip details and notifications",
                 label: "NEW DESIGN",
                 labelTop: "2.91%",
@@ -755,7 +764,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-home-explore.png`,
+                src: `${A}/truck-final-home-explore.webp`,
                 alt: "Explorations of different home page layouts",
               },
             ],
@@ -789,13 +798,13 @@ const truckApp: CaseStudyData = {
             layout: "stack",
             images: [
               {
-                src: `${A}/truck-final-trucks-old.png`,
+                src: `${A}/truck-final-trucks-old.webp`,
                 alt: "Truck App old trucks nearby search and rescue flow",
                 label: "OLD DESIGN",
                 labelTop: "4.08%",
               },
               {
-                src: `${A}/truck-final-trucks-new.png`,
+                src: `${A}/truck-final-trucks-new.webp`,
                 alt: "Truck App redesigned trucks nearby search and rescue flow",
                 label: "NEW DESIGN",
                 labelTop: "3.34%",
@@ -827,7 +836,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-notification.png`,
+                src: `${A}/truck-final-notification.webp`,
                 alt: "Truck App notification page with delivery and location updates",
               },
             ],
@@ -856,13 +865,13 @@ const truckApp: CaseStudyData = {
             layout: "pair-wide",
             images: [
               {
-                src: `${A}/truck-final-about-old.png`,
+                src: `${A}/truck-final-about-old.webp`,
                 alt: "Truck App old about truck page",
                 label: "OLD DESIGN",
                 labelTop: "3.24%",
               },
               {
-                src: `${A}/truck-final-about-new.png`,
+                src: `${A}/truck-final-about-new.webp`,
                 alt: "Truck App redesigned about truck page with sectioned information",
                 label: "NEW DESIGN",
                 labelTop: "2.91%",
@@ -880,7 +889,7 @@ const truckApp: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/truck-final-design-system.png`,
+                src: `${A}/truck-final-design-system.webp`,
                 alt: "Truck App design system including brand colors, typography, and components",
               },
             ],
@@ -981,7 +990,7 @@ const tpay: CaseStudyData = {
       "Ultimately, the aim was to make financial management feel more accessible for individuals and more efficient, transparent, and manageable for businesses",
     ],
     visual: {
-      src: `${A}/tpay-goals-phones.svg`,
+      src: `${A}/tpay-goals-phones.webp`,
       alt: "TPay mobile app screens",
     },
   },
@@ -1029,22 +1038,22 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-01.png`,
+                src: `${A}/tpay-final-01.webp`,
                 alt: "TPay Corporate dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-02.png`,
+                src: `${A}/tpay-final-02.webp`,
                 alt: "TPay Personal dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-03.png`,
+                src: `${A}/tpay-final-03.webp`,
                 alt: "TPay wallet dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-04.png`,
+                src: `${A}/tpay-final-04.webp`,
                 alt: "Dashboard screen 4",
                 framed: true,
               },
@@ -1061,12 +1070,12 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-05.png`,
+                src: `${A}/tpay-final-05.webp`,
                 alt: "Payments screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-06.png`,
+                src: `${A}/tpay-final-06.webp`,
                 alt: "Payments screen 2",
                 framed: true,
               },
@@ -1083,12 +1092,12 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-07.png`,
+                src: `${A}/tpay-final-07.webp`,
                 alt: "Invoicing screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-08.png`,
+                src: `${A}/tpay-final-08.webp`,
                 alt: "Invoicing screen 2",
                 framed: true,
               },
@@ -1105,17 +1114,17 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-09.png`,
+                src: `${A}/tpay-final-09.webp`,
                 alt: "Transaction history screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-10.png`,
+                src: `${A}/tpay-final-10.webp`,
                 alt: "Transaction history screen 2",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-11.png`,
+                src: `${A}/tpay-final-11.webp`,
                 alt: "Transaction history screen 3",
                 framed: true,
               },
@@ -1132,17 +1141,17 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-12.png`,
+                src: `${A}/tpay-final-12.webp`,
                 alt: "Auth screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-13.png`,
+                src: `${A}/tpay-final-13.webp`,
                 alt: "Auth screen 2",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-14.png`,
+                src: `${A}/tpay-final-14.webp`,
                 alt: "Auth screen 3",
                 framed: true,
               },
@@ -1212,11 +1221,11 @@ const thr: CaseStudyData = {
       "The problems identified were informed by feedback from internal teams, a review of recurring people operations tasks, and an audit of the existing interface.",
     screenshots: [
       {
-        src: `${A}/THR.svg`,
+        src: `${A}/THR-preview.webp`,
         alt: "THR dashboard screen",
       },
       {
-        src: `${A}/THR.png`,
+        src: `${A}/THR-detail.webp`,
         alt: "THR employee management screen",
       },
     ],
@@ -1278,7 +1287,7 @@ const thr: CaseStudyData = {
       },
     ],
     visual: {
-      src: `${A}/THR.svg`,
+      src: `${A}/THR-preview.webp`,
       alt: "THR dashboard",
     },
   },
@@ -1293,32 +1302,32 @@ const thr: CaseStudyData = {
             layout: "stack",
             images: [
               {
-                src: `${A}/thr-final-01.png`,
+                src: `${A}/thr-final-01.webp`,
                 alt: "THR leave request dashboard",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-02.png`,
+                src: `${A}/thr-final-02.webp`,
                 alt: "THR update password settings",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-03.png`,
+                src: `${A}/thr-final-03.webp`,
                 alt: "THR payroll approvals",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-04.png`,
+                src: `${A}/thr-final-04.webp`,
                 alt: "THR leave details",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-05.png`,
+                src: `${A}/thr-final-05.webp`,
                 alt: "THR resource bank",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-06.png`,
+                src: `${A}/thr-final-06.webp`,
                 alt: "THR structured payroll settings",
                 framed: true,
               },

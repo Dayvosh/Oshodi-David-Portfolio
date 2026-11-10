@@ -49,7 +49,13 @@ function CaseHeroVisual({ theme }: { theme: CaseTheme }) {
     return (
       <div className="project-visual tpay-theme">
         <div className="tpay-image-wrap">
-          <img src={`${A}/Hero Image Details.svg`} alt="" draggable={false} />
+          <img
+            src={`${A}/Hero Image Details.webp`}
+            width={800}
+            height={568}
+            alt=""
+            draggable={false}
+          />
         </div>
       </div>
     )
@@ -127,6 +133,8 @@ function CaseProblem({ study }: { study: CaseStudyData }) {
               className="case-problem-quote-avatar"
               src={problem.quote.image}
               alt={problem.quote.author}
+              loading="lazy"
+              decoding="async"
             />
             <div>
               <p className="case-problem-quote-name">{problem.quote.author}</p>
@@ -149,7 +157,12 @@ function CaseProblem({ study }: { study: CaseStudyData }) {
         >
           {problem.screenshots.map((shot, index) => (
             <div className="case-review-shot" key={`${shot.src}-${index}`}>
-              <img src={shot.src} alt={shot.alt} />
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           ))}
         </div>
@@ -178,7 +191,13 @@ function CaseProblem({ study }: { study: CaseStudyData }) {
           <span className="case-old-ui-label">{problem.oldUi.label}</span>
           <div className="case-old-ui-phones">
             {problem.oldUi.images.map((image) => (
-              <img key={image.src} src={image.src} alt={image.alt} />
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+              />
             ))}
           </div>
         </div>
@@ -210,7 +229,12 @@ function CaseGoals({ study }: { study: CaseStudyData }) {
       </div>
       {goals.visual ? (
         <div className="case-goals-visual">
-          <img src={goals.visual.src} alt={goals.visual.alt} />
+          <img
+            src={goals.visual.src}
+            alt={goals.visual.alt}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ) : null}
     </section>
@@ -241,6 +265,8 @@ function CaseDesignProcess({ study }: { study: CaseStudyData }) {
               <img
                 src={designProcess.startVisual.src}
                 alt={designProcess.startVisual.alt}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ) : null}
@@ -317,6 +343,8 @@ function CaseDesignProcess({ study }: { study: CaseStudyData }) {
               <img
                 src={designProcess.visual.src}
                 alt={designProcess.visual.alt}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ) : null}
@@ -352,7 +380,14 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                 }
                 key={index}
               >
-                {item.src ? <img src={item.src} alt={item.alt ?? ""} /> : null}
+                {item.src ? (
+                  <img
+                    src={item.src}
+                    alt={item.alt ?? ""}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : null}
               </div>
             ))}
           </div>
@@ -409,7 +444,12 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                           }`}
                           key={image.src}
                         >
-                          <img src={image.src} alt={image.alt} />
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            loading="lazy"
+                            decoding="async"
+                          />
                           {image.label ? (
                             <span
                               className={`case-design-flow-tag ${
@@ -440,6 +480,8 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                       src={block.image}
                       alt=""
                       className="case-final-visual-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : null}
                   {index === 1 && block.image2 ? (
@@ -447,6 +489,8 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                       src={block.image2}
                       alt=""
                       className="case-final-visual-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : null}
                 </div>

@@ -1,28 +1,36 @@
-'use client'
+"use client"
 
-import { useEffect, useRef, useState } from 'react'
-import Footer from './Footer'
-import Icon from './Icon'
-import NavIcon from './NavIcon'
-import SoundSwitch from './SoundSwitch'
-import ThemeSwitch from './ThemeSwitch'
-import TopBar from './TopBar'
-import { useTheme } from './useTheme'
+import { useEffect, useRef, useState } from "react"
+import Footer from "./Footer"
+import Icon from "./Icon"
+import NavIcon from "./NavIcon"
+import SoundSwitch from "./SoundSwitch"
+import ThemeSwitch from "./ThemeSwitch"
+import TopBar from "./TopBar"
+import { useTheme } from "./useTheme"
 
-const A = '/assets'
+const A = "/assets"
 
-const galleryImages = [
-  `${A}/about-tile-1.png`,
-  `${A}/about-tile-2.png`,
-  `${A}/about-tile-3.png`,
-  `${A}/about-tile-4.png`,
+const personalImages = [
+  `${A}/About/me-1.webp`,
+  `${A}/About/me-2.webp`,
+  `${A}/About/me-3.webp`,
+]
+
+const hobbyImages = [
+  `${A}/About/gym-1.webp`,
+  `${A}/About/gym-2.webp`,
+  `${A}/About/book-2.webp`,
+  `${A}/About/book-1.webp`,
+  `${A}/About/book-3.webp`,
+  `${A}/About/book-4.webp`,
 ]
 
 function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
       <a className="portrait" href="/#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <nav>
         <a href="/#work">
@@ -54,7 +62,7 @@ function MobileHeader({
   return (
     <header className="mobile-header">
       <a className="portrait" href="/#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <div className="mobile-actions">
         <ThemeSwitch dark={dark} setDark={setDark} />
@@ -83,17 +91,16 @@ function MobileHeader({
   )
 }
 
-function MobileMenu({
-  open,
-  onClose,
-}: {
+interface MobileMenuProps {
   open: boolean
   onClose: () => void
-}) {
+}
+
+function MobileMenu({ open, onClose }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return
     const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = previous
     }
@@ -101,14 +108,19 @@ function MobileMenu({
 
   return (
     <div
-      className={`mobile-menu${open ? ' open' : ''}`}
+      className={`mobile-menu${open ? " open" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
     >
       <div className="mobile-menu-top">
-        <a className="portrait" href="/#top" aria-label="Back to top" onClick={onClose}>
-          <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <a
+          className="portrait"
+          href="/#top"
+          aria-label="Back to top"
+          onClick={onClose}
+        >
+          <img src={`${A}/portrait.webp`} alt="Oshodi David" />
         </a>
         <button
           className="menu-close"
@@ -152,23 +164,36 @@ function MobileMenu({
   )
 }
 
-function Gallery() {
+function Gallery({
+  images,
+  contain = false,
+}: {
+  images: string[]
+  contain?: boolean
+}) {
   const viewportRef = useRef<HTMLDivElement>(null)
-  const drag = useRef({ active: false, isMouse: false, startX: 0, startScroll: 0 })
+  const drag = useRef({
+    active: false,
+    isMouse: false,
+    startX: 0,
+    startScroll: 0,
+  })
   const [grabbing, setGrabbing] = useState(false)
 
   useEffect(() => {
     const viewport = viewportRef.current
     if (!viewport) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     let raf = 0
     let last = performance.now()
+    let visible = true
     const speed = 24
 
     const loop = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05)
       last = now
-      if (!drag.current.active) {
+      if (visible && !drag.current.active) {
         viewport.scrollLeft += speed * dt
         const set = viewport.scrollWidth / 3
         if (viewport.scrollLeft >= set) viewport.scrollLeft -= set
@@ -176,14 +201,26 @@ function Gallery() {
       raf = requestAnimationFrame(loop)
     }
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0]?.isIntersecting ?? true
+        last = performance.now()
+      },
+      { rootMargin: "200px" },
+    )
+    observer.observe(viewport)
+
     raf = requestAnimationFrame(loop)
-    return () => cancelAnimationFrame(raf)
+    return () => {
+      cancelAnimationFrame(raf)
+      observer.disconnect()
+    }
   }, [])
 
   const onPointerDown = (event: React.PointerEvent) => {
     const viewport = viewportRef.current
     if (!viewport) return
-    const isMouse = event.pointerType === 'mouse'
+    const isMouse = event.pointerType === "mouse"
     drag.current = {
       active: true,
       isMouse,
@@ -213,26 +250,46 @@ function Gallery() {
     }
   }
 
-  const tiles = [...galleryImages, ...galleryImages, ...galleryImages]
+  const tiles = [...images, ...images, ...images]
 
   return (
     <div className="about-gallery">
       <div
         ref={viewportRef}
-        className={`about-gallery-viewport${grabbing ? ' grabbing' : ''}`}
+        className={`about-gallery-viewport${grabbing ? " grabbing" : ""}`}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
       >
         {tiles.map((src, index) => (
-          <div className="about-gallery-tile" key={index}>
-            <img src={src} alt="" draggable={false} />
+          <div
+            className={`about-gallery-tile${
+              contain ? " about-gallery-tile--contain" : ""
+            }`}
+            key={index}
+          >
+            <img
+              src={src}
+              alt=""
+              draggable={false}
+              loading="lazy"
+              decoding="async"
+              ref={(img) => {
+                if (!contain || !img) return
+                const tile = img.parentElement
+                if (!tile) return
+                const apply = () => {
+                  if (!img.naturalWidth || !img.naturalHeight) return
+                  tile.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`
+                }
+                if (img.complete) apply()
+                else img.onload = apply
+              }}
+            />
           </div>
         ))}
       </div>
-      <div className="about-gallery-fade about-gallery-fade--left" aria-hidden="true" />
-      <div className="about-gallery-fade about-gallery-fade--right" aria-hidden="true" />
     </div>
   )
 }
@@ -255,7 +312,9 @@ export default function About() {
           <TopBar dark={dark} setDark={setDark} />
           <div className="content about-content">
             <section className="about-hero">
-              <h1 className="about-title">Hello there, I&apos;m Oshodi David</h1>
+              <h1 className="about-title">
+                Hello there, I&apos;m Oshodi David
+              </h1>
               <p className="about-intro">
                 A designer naturally curious by nature, and that shapes how I
                 approach design. I like understanding why something isn&apos;t
@@ -292,7 +351,7 @@ export default function About() {
                 </p>
               </div>
             </section>
-            <Gallery />
+            <Gallery images={personalImages} />
             <section className="about-outside">
               <p>
                 Outside design, i spend my time reading books of all spheres of
@@ -300,7 +359,7 @@ export default function About() {
                 inspiration everything that looks beautiful
               </p>
             </section>
-            <Gallery />
+            <Gallery images={hobbyImages} contain />
           </div>
         </main>
       </div>

@@ -1,7 +1,7 @@
-type NavName = 'work' | 'about' | 'resume'
+type NavName = "work" | "about" | "resume"
 
 export default function NavIcon({ name }: { name: NavName }) {
-  if (name === 'work') {
+  if (name === "work") {
     return (
       <svg
         width="16"
@@ -22,7 +22,7 @@ export default function NavIcon({ name }: { name: NavName }) {
     )
   }
 
-  if (name === 'about') {
+  if (name === "about") {
     return (
       <svg
         width="16"

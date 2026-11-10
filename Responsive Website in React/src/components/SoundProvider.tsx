@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   createContext,
@@ -7,8 +7,8 @@ import {
   useRef,
   useState,
   type ReactNode,
-} from 'react'
-import { usePathname } from 'next/navigation'
+} from "react"
+import { usePathname } from "next/navigation"
 import {
   disableSound,
   enableSound,
@@ -17,9 +17,9 @@ import {
   preloadEssentials,
   setSoundEnabled,
   unlockSound,
-} from '../lib/sound'
+} from "../lib/sound"
 
-const STORAGE_KEY = 'portfolio-sound'
+const STORAGE_KEY = "portfolio-sound"
 
 interface SoundContextValue {
   enabled: boolean
@@ -36,46 +36,46 @@ export function useSound() {
 }
 
 const CLICK_SELECTOR = [
-  'button',
+  "button",
   '[role="button"]',
-  '.email-button',
-  '.email-pill',
-  '.resume-button',
-  '.case-live-button',
-  '.case-view-insights',
-  '.project-card-link',
-  '.case-more-card-link',
-  '.side-nav nav a',
-  '.mobile-menu nav a',
-  '.case-side-nav nav a',
-  '.case-back',
-  '.theme-switch button',
-  '.tabs button',
-  'footer a',
-  '.socials a',
-].join(',')
+  ".email-button",
+  ".email-pill",
+  ".resume-button",
+  ".case-live-button",
+  ".case-view-insights",
+  ".project-card-link",
+  ".case-more-card-link",
+  ".side-nav nav a",
+  ".mobile-menu nav a",
+  ".case-side-nav nav a",
+  ".case-back",
+  ".theme-switch button",
+  ".tabs button",
+  "footer a",
+  ".socials a",
+].join(",")
 
 function isInternalRouteLink(anchor: HTMLAnchorElement, event: MouseEvent) {
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
     return false
   }
-  if (anchor.target === '_blank' || anchor.hasAttribute('download')) {
+  if (anchor.target === "_blank" || anchor.hasAttribute("download")) {
     return false
   }
 
-  const href = anchor.getAttribute('href')
+  const href = anchor.getAttribute("href")
   if (!href) return false
   if (
-    href.startsWith('#') ||
-    href.startsWith('mailto:') ||
-    href.startsWith('tel:') ||
-    href.startsWith('http') ||
-    href.startsWith('//')
+    href.startsWith("#") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("http") ||
+    href.startsWith("//")
   ) {
     return false
   }
 
-  return href.startsWith('/')
+  return href.startsWith("/")
 }
 
 export default function SoundProvider({ children }: { children: ReactNode }) {
@@ -86,7 +86,7 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    const next = window.localStorage.getItem(STORAGE_KEY) !== 'off'
+    const next = window.localStorage.getItem(STORAGE_KEY) !== "off"
     enabledRef.current = next
     setEnabled(next)
     setSoundEnabled(next)
@@ -97,7 +97,7 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     enabledRef.current = enabled
     if (!ready) return
-    window.localStorage.setItem(STORAGE_KEY, enabled ? 'on' : 'off')
+    window.localStorage.setItem(STORAGE_KEY, enabled ? "on" : "off")
   }, [enabled, ready])
 
   useEffect(() => {
@@ -117,7 +117,7 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       }, 400)
     } else {
       disableSound()
-      window.localStorage.setItem(STORAGE_KEY, 'off')
+      window.localStorage.setItem(STORAGE_KEY, "off")
     }
   }
 
@@ -126,7 +126,7 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
 
     const onFirstGesture = (event: Event) => {
       const target = event.target as Element | null
-      if (target?.closest('.sound-switch')) return
+      if (target?.closest(".sound-switch")) return
       if (!enabledRef.current) return
 
       unlockSound()
@@ -136,18 +136,18 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       }, 500)
     }
 
-    window.addEventListener('pointerdown', onFirstGesture, {
+    window.addEventListener("pointerdown", onFirstGesture, {
       once: true,
       capture: true,
     })
-    window.addEventListener('keydown', onFirstGesture, {
+    window.addEventListener("keydown", onFirstGesture, {
       once: true,
       capture: true,
     })
 
     return () => {
-      window.removeEventListener('pointerdown', onFirstGesture, true)
-      window.removeEventListener('keydown', onFirstGesture, true)
+      window.removeEventListener("pointerdown", onFirstGesture, true)
+      window.removeEventListener("keydown", onFirstGesture, true)
     }
   }, [ready])
 
@@ -161,18 +161,18 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       const target = event.target as Element | null
       const element = target?.closest(CLICK_SELECTOR) as HTMLElement | null
       if (!element) return
-      if (element.closest('.sound-switch')) return
+      if (element.closest(".sound-switch")) return
       if (
         element instanceof HTMLAnchorElement &&
         isInternalRouteLink(element, event)
       ) {
         return
       }
-      playSound('click')
+      playSound("click")
     }
 
-    document.addEventListener('click', handleClick)
-    return () => document.removeEventListener('click', handleClick)
+    document.addEventListener("click", handleClick)
+    return () => document.removeEventListener("click", handleClick)
   }, [ready])
 
   useEffect(() => {
@@ -184,7 +184,7 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
     }
 
     if (!enabledRef.current) return
-    playSound('transition')
+    playSound("transition")
   }, [pathname, ready])
 
   return (

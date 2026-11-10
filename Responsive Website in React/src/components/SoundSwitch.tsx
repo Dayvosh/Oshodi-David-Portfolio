@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useSound } from './SoundProvider'
+import { useSound } from "./SoundProvider"
 
 export default function SoundSwitch() {
   const { enabled, toggle } = useSound()
@@ -10,9 +10,9 @@ export default function SoundSwitch() {
       className="sound-switch"
       type="button"
       onClick={toggle}
-      aria-label={enabled ? 'Turn sound off' : 'Turn sound on'}
+      aria-label={enabled ? "Turn sound off" : "Turn sound on"}
       aria-pressed={enabled}
-      title={enabled ? 'Sound on' : 'Sound off'}
+      title={enabled ? "Sound on" : "Sound off"}
     >
       {enabled ? (
         <svg

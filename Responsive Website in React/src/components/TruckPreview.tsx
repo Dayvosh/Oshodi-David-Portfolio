@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import gsap from "gsap"
 
 const A = "/assets"
 const TRUCK_REAR_X = 1.254
@@ -27,6 +26,7 @@ export default function TruckPreview() {
   useEffect(() => {
     const wrap = wrapRef.current
     if (!wrap || !svg) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     const root = wrap.querySelector<SVGSVGElement>("svg")
     const truck = wrap.querySelector<SVGGElement>("#truck-illustration")
@@ -41,18 +41,28 @@ export default function TruckPreview() {
     const { x, width } = root.viewBox.baseVal
     const parkDistance = x + width / 2 - rearX
 
-    const context = gsap.context(() => {
-      gsap.timeline({ repeat: -1 })
-        .fromTo(
-          truck,
-          { x: 0 },
-          { x: parkDistance, duration: 7, ease: "power2.inOut" },
-        )
-        .to({}, { duration: 1 })
-        .to(truck, { x: 0, duration: 5, ease: "power2.inOut" })
-    }, wrap)
+    let context: { revert: () => void } | undefined
+    let cancelled = false
 
-    return () => context.revert()
+    void import("gsap").then(({ gsap }) => {
+      if (cancelled) return
+      context = gsap.context(() => {
+        gsap
+          .timeline({ repeat: -1 })
+          .fromTo(truck, { x: 0 }, {
+            x: parkDistance,
+            duration: 7,
+            ease: "power2.inOut",
+          })
+          .to({}, { duration: 1 })
+          .to(truck, { x: 0, duration: 5, ease: "power2.inOut" })
+      }, wrap)
+    })
+
+    return () => {
+      cancelled = true
+      context?.revert()
+    }
   }, [svg])
 
   return (

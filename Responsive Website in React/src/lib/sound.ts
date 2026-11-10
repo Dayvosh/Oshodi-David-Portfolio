@@ -1,8 +1,8 @@
-export type SoundName = 'click' | 'transition'
+export type SoundName = "click" | "transition"
 
 const SOURCES: Record<SoundName, string> = {
-  click: '/sounds/click.m4a',
-  transition: '/sounds/mixkit-page-turn-single-1104.wav',
+  click: "/sounds/click.m4a",
+  transition: "/sounds/transition.m4a",
 }
 
 const GAINS: Record<SoundName, number> = {
@@ -20,7 +20,7 @@ const MAX_CONCURRENT: Record<SoundName, number> = {
   transition: 1,
 }
 
-const ESSENTIALS: SoundName[] = ['click', 'transition']
+const ESSENTIALS: SoundName[] = ["click", "transition"]
 const DEFERRED: SoundName[] = []
 
 let context: AudioContext | null = null
@@ -33,7 +33,7 @@ const lastPlayed = new Map<SoundName, number>()
 const active = new Map<SoundName, number>()
 
 function ensureContext(): AudioContext | null {
-  if (typeof window === 'undefined') return null
+  if (typeof window === "undefined") return null
   if (context) return context
 
   const AudioContextClass =
@@ -43,7 +43,7 @@ function ensureContext(): AudioContext | null {
 
   if (!AudioContextClass) return null
 
-  context = new AudioContextClass({ latencyHint: 'interactive' })
+  context = new AudioContextClass({ latencyHint: "interactive" })
   master = context.createGain()
   master.gain.value = enabled ? 0.9 : 0
   master.connect(context.destination)
@@ -61,7 +61,7 @@ function loadSound(name: SoundName): Promise<AudioBuffer | null> {
   const audioContext = ensureContext()
   if (!audioContext) return Promise.resolve(null)
 
-  const promise = fetch(SOURCES[name], { cache: 'force-cache' })
+  const promise = fetch(SOURCES[name], { cache: "force-cache" })
     .then((response) => {
       if (!response.ok) throw new Error(`Unable to load ${name} sound`)
       return response.arrayBuffer()
@@ -135,7 +135,7 @@ export function setSoundEnabled(value: boolean) {
 
 export function unlockSound() {
   const audioContext = ensureContext()
-  if (!audioContext || audioContext.state !== 'suspended') return
+  if (!audioContext || audioContext.state !== "suspended") return
   void audioContext.resume().catch(() => {})
 }
 
@@ -177,7 +177,7 @@ export function playSound(name: SoundName) {
     startPlayback(name, audioContext, buffer)
   }
 
-  if (audioContext.state === 'running') {
+  if (audioContext.state === "running") {
     play()
     return
   }
@@ -185,7 +185,7 @@ export function playSound(name: SoundName) {
   void audioContext
     .resume()
     .then(() => {
-      if (audioContext.state === 'running') play()
+      if (audioContext.state === "running") play()
     })
     .catch(() => {})
 }

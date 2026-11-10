@@ -1,28 +1,28 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
-import Footer from './Footer'
-import Icon from './Icon'
-import NavIcon from './NavIcon'
-import SoundSwitch from './SoundSwitch'
-import ThemeSwitch from './ThemeSwitch'
-import TopBar from './TopBar'
-import { useTheme } from './useTheme'
+import { useEffect, useState } from "react"
+import Footer from "./Footer"
+import Icon from "./Icon"
+import NavIcon from "./NavIcon"
+import SoundSwitch from "./SoundSwitch"
+import ThemeSwitch from "./ThemeSwitch"
+import TopBar from "./TopBar"
+import { useTheme } from "./useTheme"
 
-const A = '/assets'
+const A = "/assets"
 
 const jobs = [
-  { company: 'Taxtech', role: 'Product Designer', year: '2026' },
-  { company: 'Openfactor', role: 'Product Designer', year: '2026 - 2026' },
-  { company: 'Ardilla', role: 'UI/UX Designer', year: '2026 - 2026' },
-  { company: 'Leapsail', role: 'Product Designer', year: '2026 - 2026' },
+  { company: "Taxtech", role: "Lead Product Designer", year: "2026 - Present" },
+  { company: "Openfactor", role: "Product Designer", year: "2025 - 2026" },
+  { company: "Ardilla", role: "UI/UX Designer", year: "2023 - 2025" },
+  { company: "Stackivy", role: "UI/UX Designer", year: "2022 - 2023" },
 ]
 
 function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
       <a className="portrait" href="/#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <nav>
         <a href="/#work">
@@ -54,7 +54,7 @@ function MobileHeader({
   return (
     <header className="mobile-header">
       <a className="portrait" href="/#top" aria-label="Back to top">
-        <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <div className="mobile-actions">
         <ThemeSwitch dark={dark} setDark={setDark} />
@@ -83,17 +83,16 @@ function MobileHeader({
   )
 }
 
-function MobileMenu({
-  open,
-  onClose,
-}: {
+interface MobileMenuProps {
   open: boolean
   onClose: () => void
-}) {
+}
+
+function MobileMenu({ open, onClose }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return
     const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = previous
     }
@@ -101,14 +100,19 @@ function MobileMenu({
 
   return (
     <div
-      className={`mobile-menu${open ? ' open' : ''}`}
+      className={`mobile-menu${open ? " open" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
     >
       <div className="mobile-menu-top">
-        <a className="portrait" href="/#top" aria-label="Back to top" onClick={onClose}>
-          <img src={`${A}/Favicon.svg`} alt="Oshodi David" />
+        <a
+          className="portrait"
+          href="/#top"
+          aria-label="Back to top"
+          onClick={onClose}
+        >
+          <img src={`${A}/portrait.webp`} alt="Oshodi David" />
         </a>
         <button
           className="menu-close"
@@ -172,10 +176,13 @@ export default function Resume() {
             <section className="about-hero">
               <h1 className="about-title">Oshodi David</h1>
               <p className="resume-intro">
-                Product Designer based in Lagos, Nigeria with 5+ years of
-                experience designing scalable B2B SaaS and B2C fintech products
-                across web and mobile. Specialized in end-to-end product
-                building, AI-assisted workflows and data-driven design.
+                Product Designer with 5+ years of experience designing and
+                building scalable web and mobile products across fintech, SaaS,
+                edtech, and AI. Skilled in end-to-end product design, user
+                research, interaction design, prototyping, experimentation, and
+                design systems, with a strong ability to translate complex
+                business needs into intuitive, production-ready experiences that
+                drive user engagement, adoption, and conversion.
               </p>
               <a
                 className="resume-download"
@@ -217,7 +224,9 @@ export default function Resume() {
                   <span className="resume-contact-label">Linkedin</span>
                   <a
                     className="resume-contact-value"
-                    href="https://www.linkedin.com"
+                    href="https://www.linkedin.com/in/oshodi-david-8142a5208/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Oshodi David
                   </a>
