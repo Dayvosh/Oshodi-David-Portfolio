@@ -256,9 +256,9 @@ main {
 
 .work { padding: 100px clamp(32px, 12.65vw, 182px); }
 .work-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; margin-bottom: 40px; }
-.work-heading h2 { font-family: 'Geist'; font-size: 24px; line-height: 24px; letter-spacing: -.72px; font-weight: 500; }
+.work-heading h2 { font-family: 'Geist'; font-size: 24px; line-height: 24px; letter-spacing: -.72px; font-weight: 600; }
 .tabs { height: 40px; padding: 3px; display: flex; gap: 5px; background: var(--soft); border-radius: 12px; }
-.tabs button { border: 0; background: transparent; padding: 0 10px; border-radius: 8px; color: var(--secondary); font-size: 14px; letter-spacing: -.56px; }
+.tabs button { border: 0; background: transparent; padding: 0 10px; border-radius: 8px; color: var(--secondary); font-size: 15px; font-weight: 600; letter-spacing: -.56px; }
 .tabs button.selected { background: var(--card); color: var(--primary); box-shadow: 0 3px 6px #0000000a; font-family: 'Geist'; }
 .project-list { display: flex; flex-direction: column; gap: 40px; }
 .showcase-grid {
@@ -919,7 +919,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   font-weight: 500;
 }
 .case-about-copy p strong {
-  color: var(--emphasis);
+  color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-weight: 600;
 }
@@ -1029,6 +1029,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-review-shot:nth-child(6) { left: 69.81081%; top: 55.22198%; width: 26.24649%; height: 32.01341%; }
 
 .case-core-problems { margin-top: 60px; }
+.case-app--tpay .case-core-problems { margin-top: 43px; }
 .case-core-problems > h3 {
   margin: 0;
   color: var(--primary);
@@ -1290,6 +1291,10 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   line-height: 24px;
   letter-spacing: -.03em;
 }
+.case-final-lead {
+  color: var(--primary);
+  font-weight: 600;
+}
 .case-final-illustrations { margin-top: 44px; }
 .case-final-illustration-grid {
   display: grid;
@@ -1428,6 +1433,14 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   height: 100%;
   object-fit: contain;
   border-radius: 0;
+}
+.case-final-image.is-framed.is-inset {
+  padding: 0 5%;
+}
+.case-final-image.is-framed.is-inset img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 .case-final-design-label {
   position: absolute;
@@ -1674,6 +1687,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   .case-hero { padding: 40px 0 80px; }
   .case-about { padding: 40px 0 80px; }
   .case-problem { padding: 40px 0 80px; }
+  .case-app--tpay .case-core-problems { margin-top: 39px; }
   .case-goals { padding: 40px 0 80px; }
   .case-design-process { padding: 40px 0 80px; }
   .case-final-product { padding: 40px 0 80px; }
@@ -1809,6 +1823,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
   line-height: 1.12;
   letter-spacing: -.04em;
 }
@@ -1817,7 +1832,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   margin: 42px 0 0;
   color: var(--primary);
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1833,7 +1848,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   margin: 0;
   color: var(--secondary);
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1900,7 +1915,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   margin: 0;
   color: var(--secondary);
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1920,7 +1935,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   margin: 24px 0 0;
   color: var(--secondary);
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1953,6 +1968,7 @@ html.dark .app .resume-download img { filter: invert(1); }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 24px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.72px;
 }
@@ -1978,6 +1994,7 @@ html.dark .app .resume-download img { filter: invert(1); }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1985,7 +2002,7 @@ html.dark .app .resume-download img { filter: invert(1); }
   margin: 8px 0 0;
   color: var(--secondary);
   font-family: 'Geist', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -.03em;
@@ -1995,7 +2012,7 @@ html.dark .app .resume-download img { filter: invert(1); }
   padding-top: 2px;
   color: var(--secondary);
   font-family: 'Geist Mono', monospace;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 24px;
   letter-spacing: -.04em;
   white-space: nowrap;

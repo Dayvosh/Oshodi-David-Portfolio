@@ -176,13 +176,12 @@ export default function Resume() {
             <section className="about-hero">
               <h1 className="about-title">Oshodi David</h1>
               <p className="resume-intro">
-                Product Designer with 5+ years of experience designing and
-                building scalable web and mobile products across fintech, SaaS,
-                edtech, and AI. Skilled in end-to-end product design, user
-                research, interaction design, prototyping, experimentation, and
-                design systems, with a strong ability to translate complex
-                business needs into intuitive, production-ready experiences that
-                drive user engagement, adoption, and conversion.
+                Product Designer with 4+ years of experience building scalable
+                web and mobile products across FinTech, SaaS, LogTech and HR
+                Tech . I combine user research, interaction design and strong
+                visual thinking to turn complex problems into intuitive,
+                business-focused experiences that drive engagement, adoption and
+                growth.
               </p>
               <a
                 className="resume-download"

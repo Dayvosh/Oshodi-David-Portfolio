@@ -50,6 +50,7 @@ export interface CaseFinalVisual {
   label?: "OLD DESIGN" | "NEW DESIGN"
   labelTop?: string
   framed?: boolean
+  inset?: boolean
 }
 
 export interface CaseFinalGroup {
@@ -67,7 +68,7 @@ export interface CaseFinalIllustration {
 export interface CaseFinalBlock {
   title?: string
   copy?: string
-  paragraphs?: string[]
+  paragraphs?: ReactNode[]
   improvementsTitle?: string
   improvements: CaseImprovement[]
   groups?: CaseFinalGroup[]
@@ -231,7 +232,6 @@ const alatbywema: CaseStudyData = {
         value: (
           <>
             UI Design, UX Design, User Research, Wireframing, Prototyping,
-            <br />
             Information Architecture, User Flows
           </>
         ),
@@ -499,7 +499,6 @@ const truckApp: CaseStudyData = {
         value: (
           <>
             UI Design, UX Design, User Research, Wireframing, Prototyping,
-            <br />
             Information Architecture, User Flows
           </>
         ),
@@ -775,8 +774,18 @@ const truckApp: CaseStudyData = {
         title: "Trucks Nearby - Rescue & Search",
         copy: "The Trucks Nearby feature helps drivers quickly locate nearby trucks or get to trucks that needs rescue or assistance.",
         paragraphs: [
-          "Rescue Truck: Drivers can enter the truck number to locate a truck in need of assistance. The app displays its location and key details, with a direct link to Google Maps for navigation.",
-          "Search for a Truck: Drivers can search for trucks within a specific radius by entering a location and distance. Available trucks are displayed directly on the map, along with relevant information.",
+          <>
+            <span className="case-final-lead">Rescue Truck</span>: Drivers can
+            enter the truck number to locate a truck in need of assistance. The
+            app displays its location and key details, with a direct link to
+            Google Maps for navigation.
+          </>,
+          <>
+            <span className="case-final-lead">Search for a Truck</span>: Drivers
+            can search for trucks within a specific radius by entering a
+            location and distance. Available trucks are displayed directly on
+            the map, along with relevant information.
+          </>,
         ],
         improvementsTitle: "What I improved",
         improvements: [
@@ -934,7 +943,6 @@ const tpay: CaseStudyData = {
         value: (
           <>
             UI Design, UX Design, User Research, Wireframing, Prototyping,
-            <br />
             Information Architecture, User Flows
           </>
         ),
@@ -1031,7 +1039,7 @@ const tpay: CaseStudyData = {
     blocks: [
       {
         title: "Dashboard",
-        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        copy: "Users can see their balance, start transactions and also view history on every transactions they have made",
         improvements: [],
         groups: [
           {
@@ -1063,7 +1071,7 @@ const tpay: CaseStudyData = {
       },
       {
         title: "Payments",
-        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        copy: "Users make payments such as sending money, buying airtme/data and also carry out other bill payments here. It also lets users see beneficiaries making repeat transactions  quicker and easier",
         improvements: [],
         groups: [
           {
@@ -1107,7 +1115,7 @@ const tpay: CaseStudyData = {
       },
       {
         title: "Transaction History",
-        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        copy: "A dedicated page for transaction history. Users can also generate account statement",
         improvements: [],
         groups: [
           {
@@ -1123,18 +1131,13 @@ const tpay: CaseStudyData = {
                 alt: "Transaction history screen 2",
                 framed: true,
               },
-              {
-                src: `${A}/tpay-final-11.webp`,
-                alt: "Transaction history screen 3",
-                framed: true,
-              },
             ],
           },
         ],
       },
       {
         title: "Auth Pages",
-        copy: "Users can create, request and manage all their invoices here. They can also track invoices that have been sent out and do followups",
+        copy: "The login portal where uses login to their account, and also where users can create new account to access the platform",
         improvements: [],
         groups: [
           {
@@ -1193,7 +1196,6 @@ const thr: CaseStudyData = {
         value: (
           <>
             UI Design, UX Design, User Research, Wireframing, Prototyping,
-            <br />
             Information Architecture, User Flows
           </>
         ),
@@ -1205,14 +1207,12 @@ const thr: CaseStudyData = {
   },
   about: {
     eyebrow: "ABOUT THE PROJECT",
-    title: "What Is THR?",
+    title: "About THR",
     paragraphs: [
-      "THR is an HR platform supporting a logistics business and the people who keep it moving. It brings employee records, attendance, and everyday people operations into one place.",
-      "As the business grew, the experience became harder to navigate. Information was spread across different views, and routine HR tasks took more steps than they should.",
-      "The opportunity was to create a clearer, more consistent experience that helps teams manage people operations efficiently while giving drivers and staff a smoother day-to-day experience.",
+      "THR is an all-in-one Human Resource Management System (HRMS) that helps organisations simplify workforce operations. It centralises employee records, attendance, leave, payroll and performance management, reducing manual work and improving efficiency.",
+      "By replacing disconnected tools and manual workflows, THR helps HR teams maintain accurate records, monitor employee performance and manage workforce activities. Its structured processes improve operational visibility and support better decision-making.",
+      "Beyond HR administration, THR makes workplace services more accessible to employees through its integrated ecosystem of learning, visitor management and payment solutions. It helps businesses create a connected workplace, improve productivity and focus on developing their people.",
     ],
-    emphasis:
-      "The redesign focused on simplifying core HR workflows, improving visibility across employee information, and establishing a consistent system that supports future growth.",
   },
   problem: {
     eyebrow: "THE PROBLEM",
@@ -1330,6 +1330,36 @@ const thr: CaseStudyData = {
                 src: `${A}/thr-final-06.webp`,
                 alt: "THR structured payroll settings",
                 framed: true,
+              },
+              {
+                src: `${A}/thr-login-page.svg`,
+                alt: "THR login page",
+                framed: true,
+                inset: true,
+              },
+              {
+                src: `${A}/thr-forgot-password.svg`,
+                alt: "THR forgot password resend code page",
+                framed: true,
+                inset: true,
+              },
+              {
+                src: `${A}/thr-create-account.svg`,
+                alt: "THR create account page",
+                framed: true,
+                inset: true,
+              },
+              {
+                src: `${A}/thr-create-account-1.svg`,
+                alt: "THR create account page variant",
+                framed: true,
+                inset: true,
+              },
+              {
+                src: `${A}/thr-create-account-2.svg`,
+                alt: "THR create account page variant",
+                framed: true,
+                inset: true,
               },
             ],
           },

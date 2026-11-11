@@ -169,7 +169,7 @@ function CaseProblem({ study }: { study: CaseStudyData }) {
       ) : null}
 
       <div className="case-core-problems">
-        <h3>Core Problems</h3>
+        {study.slug !== "tpay" ? <h3>Core Problems</h3> : null}
         <div className="case-core-problems-list">
           {problem.coreProblems.map((item) => (
             <div className="case-core-problem" key={item.title}>
@@ -400,8 +400,8 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
             {block.copy ? (
               <p className="case-final-block-copy">{block.copy}</p>
             ) : null}
-            {block.paragraphs?.map((paragraph) => (
-              <p className="case-final-block-copy" key={paragraph}>
+            {block.paragraphs?.map((paragraph, index) => (
+              <p className="case-final-block-copy" key={index}>
                 {paragraph}
               </p>
             ))}
@@ -441,7 +441,7 @@ function CaseFinalProduct({ study }: { study: CaseStudyData }) {
                         <div
                           className={`case-final-image${
                             image.framed ? " is-framed" : ""
-                          }`}
+                          }${image.inset ? " is-inset" : ""}`}
                           key={image.src}
                         >
                           <img
@@ -616,7 +616,12 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
   const isThr = study.slug === "thr"
 
   return (
-    <div className={`case-app${headerHidden ? " header-hidden" : ""}`} id="top">
+    <div
+      className={`case-app case-app--${study.slug}${
+        headerHidden ? " header-hidden" : ""
+      }`}
+      id="top"
+    >
       <div className="case-layout">
         <CaseNavigation dark={dark} setDark={setDark} slug={study.slug} />
         <main className="case-main">

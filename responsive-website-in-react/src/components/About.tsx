@@ -312,51 +312,43 @@ export default function About() {
           <TopBar dark={dark} setDark={setDark} />
           <div className="content about-content">
             <section className="about-hero">
-              <h1 className="about-title">
-                Hello there, I&apos;m Oshodi David
-              </h1>
+              <h1 className="about-title">I&apos;m Oshodi David</h1>
               <p className="about-intro">
-                A designer naturally curious by nature, and that shapes how I
-                approach design. I like understanding why something isn&apos;t
-                working before jumping into how it should look
+                I&apos;m naturally curious, and that shapes how I approach
+                design. I like understanding why something isn&apos;t working
+                before jumping into how it should look. I believe good design
+                starts with asking the right questions and understanding the
+                people behind the problem.
               </p>
               <div className="about-copy">
                 <p>
-                  Before i got into product design, i did graphics design where
-                  i designed, logos, flyers, banners. Overtime i had used
-                  products that got me frustrated and i&apos;ve also seen that
-                  frustration from friends and family, so when i came across
-                  product design and saw all the problems and frustations i
-                  could solve, i picked deep interest in it and it&apos;s been
-                  history since then.
+                  My journey started in graphic design, creating logos, flyers
+                  and visual identities. Over time, I became more interested in
+                  solving the everyday frustrations people experience with
+                  digital products. Discovering product design gave me an
+                  opportunity to combine my visual background with
+                  problem-solving, and I&apos;ve been enjoying that journey ever
+                  since.
                 </p>
                 <p>
-                  Recently i have picked interest in building my designs using
-                  AI assisted workflows. There are many times where i engineers
-                  didn&apos;t really code my designs as much as i&apos;d like,
-                  now knowing all the possiblities of building with AI has given
-                  me a superpower, now i feel empowered.
-                </p>
-                <p>
-                  I have started taking courses and getting really close to the
-                  engineering world. Now i have absorbed myself into learning
-                  how to take a product from ideation phase to shipping phase
-                  and that journey already started.
-                </p>
-                <p>
-                  I am currently building two products and one of them would
-                  ship soon and i feel so good about this. My portfolio was also
-                  built by me using AI after i designed it in Figma. What a good
-                  time to be alive
+                  Recently, I&apos;ve been exploring AI-assisted development and
+                  getting closer to the engineering side of product creation.
+                  I&apos;m fascinated by the possibilities of taking ideas
+                  beyond Figma and turning them into real, usable products.
+                  I&apos;m currently building two products of my own, one of
+                  which is nearing launch. I also built this portfolio with AI,
+                  and it&apos;s been an exciting experience. What a time to be
+                  alive! 😁
                 </p>
               </div>
             </section>
             <Gallery images={personalImages} />
             <section className="about-outside">
               <p>
-                Outside design, i spend my time reading books of all spheres of
-                life, watching movies, going to the gym and collecting
-                inspiration everything that looks beautiful
+                Outside design, I enjoy reading, watching movies, going to the
+                gym and finding inspiration in the little things. I&apos;m
+                naturally drawn to beautiful things, interesting ideas and new
+                perspectives.
               </p>
             </section>
             <Gallery images={hobbyImages} contain />
