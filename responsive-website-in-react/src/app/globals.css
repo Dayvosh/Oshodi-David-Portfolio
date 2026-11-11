@@ -256,7 +256,7 @@ main {
 
 .work { padding: 100px clamp(32px, 12.65vw, 182px); }
 .work-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; margin-bottom: 40px; }
-.work-heading h2 { font-family: 'Geist'; font-size: 24px; line-height: 24px; letter-spacing: -.72px; font-weight: 600; }
+.work-heading h2 { font-family: 'Geist'; font-size: 30px; line-height: 30px; letter-spacing: -.72px; font-weight: 600; }
 .tabs { height: 40px; padding: 3px; display: flex; gap: 5px; background: var(--soft); border-radius: 12px; }
 .tabs button { border: 0; background: transparent; padding: 0 10px; border-radius: 8px; color: var(--secondary); font-size: 15px; font-weight: 600; letter-spacing: -.56px; }
 .tabs button.selected { background: var(--card); color: var(--primary); box-shadow: 0 3px 6px #0000000a; font-family: 'Geist'; }
@@ -615,6 +615,11 @@ footer { position: relative; z-index: 30; padding: 100px 100px 56px; background:
   .phone-shell { transform: scale(.78); }
   .browser { transform: scale(.58); min-width: 710px; }
   .project-copy { padding-top: 18px; }
+  html.dark .app .tabs button.selected,
+  .app.dark .tabs button.selected { background: #000; }
+  .meta { color: var(--secondary); }
+  .project-copy h3 { font-size: 24px; font-weight: 600; }
+  .project-copy p { color: var(--secondary); font-size: 15px; font-weight: 500; }
   footer { padding: 80px 20px 32px; }
   .footer-main { gap: 22px; }
   .footer-intro h2 { font-size: clamp(34px, 10.5vw, 46px); line-height: 1.05; }
@@ -632,7 +637,7 @@ footer { position: relative; z-index: 30; padding: 100px 100px 56px; background:
 @media (max-width: 390px) {
   .project-visual { height: 330px; }
   .browser { transform: scale(.46); }
-  .meta { gap: 6px; font-size: 10px; }
+  .meta { gap: 6px; font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
