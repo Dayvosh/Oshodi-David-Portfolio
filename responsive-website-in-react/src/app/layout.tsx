@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   applicationName: siteName,
   authors: [{ name: "Oshodi David" }],
   creator: "Oshodi David",
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-  },
   openGraph: {
     type: "website",
     siteName,

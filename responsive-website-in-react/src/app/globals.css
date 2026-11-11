@@ -60,6 +60,18 @@ html.dark .app {
   background: var(--soft);
 }
 .portrait img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(1); }
+.side-nav .portrait img,
+.mobile-header .portrait img,
+.mobile-menu .portrait img {
+  object-fit: cover;
+  transform: scale(2.2) translateY(3%);
+  transform-origin: 50% 0%;
+}
+.side-nav .portrait,
+.mobile-header .portrait,
+.mobile-menu .portrait {
+  background: #1a191d;
+}
 .side-nav nav { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
 .side-nav nav a {
   display: flex;
@@ -185,6 +197,10 @@ main {
   background: transparent;
 }
 .theme-switch button.selected { background: var(--card); box-shadow: 0 3px 8px #0000000a; }
+html.dark .app .theme-switch button.selected,
+.app.dark .theme-switch button.selected,
+html.dark .case-app .theme-switch button.selected,
+.case-app.dark .theme-switch button.selected { background: #000; }
 .theme-switch img, .email-button img, .resume-button img { width: 16px; height: 16px; }
 .theme-switch button img { opacity: .4; transition: opacity .2s, filter .2s; }
 .theme-switch button.selected img { opacity: 1; }
@@ -260,6 +276,8 @@ main {
 .tabs { height: 40px; padding: 3px; display: flex; gap: 5px; background: var(--soft); border-radius: 12px; }
 .tabs button { border: 0; background: transparent; padding: 0 10px; border-radius: 8px; color: var(--secondary); font-size: 15px; font-weight: 600; letter-spacing: -.56px; }
 .tabs button.selected { background: var(--card); color: var(--primary); box-shadow: 0 3px 6px #0000000a; font-family: 'Geist'; }
+html.dark .app .tabs button.selected,
+.app.dark .tabs button.selected { background: #000; }
 .project-list { display: flex; flex-direction: column; gap: 40px; }
 .showcase-grid {
   display: grid;
@@ -615,8 +633,6 @@ footer { position: relative; z-index: 30; padding: 100px 100px 56px; background:
   .phone-shell { transform: scale(.78); }
   .browser { transform: scale(.58); min-width: 710px; }
   .project-copy { padding-top: 18px; }
-  html.dark .app .tabs button.selected,
-  .app.dark .tabs button.selected { background: #000; }
   .meta { color: var(--secondary); }
   .project-copy h3 { font-size: 24px; font-weight: 600; }
   .project-copy p { color: var(--secondary); font-size: 15px; font-weight: 500; }
