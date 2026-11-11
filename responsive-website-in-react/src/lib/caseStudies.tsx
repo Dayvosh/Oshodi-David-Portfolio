@@ -390,7 +390,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a flexible layout that can accommodate additional payment services as the product grows.",
           },
         ],
-        image: `${A}/Payment Hub.webp`,
+        image: `${A}/Payment Hub-hq.webp`,
       },
       {
         title: "Local Transfer",
@@ -414,8 +414,8 @@ const alatbywema: CaseStudyData = {
           },
         ],
         visuals: 2,
-        image: `${A}/Local Transfer 1.webp`,
-        image2: `${A}/Local transfer 2.webp`,
+        image: `${A}/Local Transfer 1-hq.webp`,
+        image2: `${A}/Local transfer 2-hq.webp`,
       },
       {
         title: "Airtime/Data",
@@ -430,7 +430,7 @@ const alatbywema: CaseStudyData = {
             body: "Displayed previous recipients automatically as users enter a phone number, making repeat purchases quicker and easier.",
           },
         ],
-        image: `${A}/Data.webp`,
+        image: `${A}/Data-hq.webp`,
       },
       {
         title: "Bill Payment",
@@ -449,7 +449,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a flexible layout that supports additional billers and payment categories as the platform grows.",
           },
         ],
-        image: `${A}/Bill Payment.webp`,
+        image: `${A}/Bill Payment-hq.webp`,
       },
       {
         title: "Gift card/Evoucher",
@@ -463,7 +463,7 @@ const alatbywema: CaseStudyData = {
             body: "Created a well-structured layout that makes gift cards easier to browse and find.",
           },
         ],
-        image: `${A}/Gift card.webp`,
+        image: `${A}/Gift card-hq.webp`,
       },
     ],
   },
@@ -694,13 +694,13 @@ const truckApp: CaseStudyData = {
             layout: "pair",
             images: [
               {
-                src: `${A}/truck-final-nav-old.webp`,
+                src: `${A}/truck-final-nav-old-hq.webp`,
                 alt: "Truck App old bottom navigation design",
                 label: "OLD DESIGN",
                 labelTop: "55.63%",
               },
               {
-                src: `${A}/truck-final-nav-new.webp`,
+                src: `${A}/truck-final-nav-new-hq.webp`,
                 alt: "Truck App redesigned bottom navigation with clear labels",
                 label: "NEW DESIGN",
                 labelTop: "55.63%",
@@ -714,7 +714,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-nav-explore.webp`,
+                src: `${A}/truck-final-nav-explore-hq.webp`,
                 alt: "Explorations of different navigation styles and color variations",
               },
             ],
@@ -743,13 +743,13 @@ const truckApp: CaseStudyData = {
             layout: "pair-wide",
             images: [
               {
-                src: `${A}/truck-final-home-old.webp`,
+                src: `${A}/truck-final-home-old-hq.webp`,
                 alt: "Truck App old home page design",
                 label: "OLD DESIGN",
                 labelTop: "3.24%",
               },
               {
-                src: `${A}/truck-final-home-new.webp`,
+                src: `${A}/truck-final-home-new-hq.webp`,
                 alt: "Truck App redesigned home page with trip details and notifications",
                 label: "NEW DESIGN",
                 labelTop: "2.91%",
@@ -763,7 +763,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-home-explore.webp`,
+                src: `${A}/truck-final-home-explore-hq.webp`,
                 alt: "Explorations of different home page layouts",
               },
             ],
@@ -807,13 +807,13 @@ const truckApp: CaseStudyData = {
             layout: "stack",
             images: [
               {
-                src: `${A}/truck-final-trucks-old.webp`,
+                src: `${A}/truck-final-trucks-old-hq.webp`,
                 alt: "Truck App old trucks nearby search and rescue flow",
                 label: "OLD DESIGN",
                 labelTop: "4.08%",
               },
               {
-                src: `${A}/truck-final-trucks-new.webp`,
+                src: `${A}/truck-final-trucks-new-hq.webp`,
                 alt: "Truck App redesigned trucks nearby search and rescue flow",
                 label: "NEW DESIGN",
                 labelTop: "3.34%",
@@ -845,7 +845,7 @@ const truckApp: CaseStudyData = {
             layout: "single",
             images: [
               {
-                src: `${A}/truck-final-notification.webp`,
+                src: `${A}/truck-final-notification-hq.webp`,
                 alt: "Truck App notification page with delivery and location updates",
               },
             ],
@@ -874,13 +874,13 @@ const truckApp: CaseStudyData = {
             layout: "pair-wide",
             images: [
               {
-                src: `${A}/truck-final-about-old.webp`,
+                src: `${A}/truck-final-about-old-hq.webp`,
                 alt: "Truck App old about truck page",
                 label: "OLD DESIGN",
                 labelTop: "3.24%",
               },
               {
-                src: `${A}/truck-final-about-new.webp`,
+                src: `${A}/truck-final-about-new-hq.webp`,
                 alt: "Truck App redesigned about truck page with sectioned information",
                 label: "NEW DESIGN",
                 labelTop: "2.91%",
@@ -898,7 +898,7 @@ const truckApp: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/truck-final-design-system.webp`,
+                src: `${A}/truck-final-design-system-hq.webp`,
                 alt: "Truck App design system including brand colors, typography, and components",
               },
             ],
@@ -1046,22 +1046,22 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-01.webp`,
+                src: `${A}/tpay-final-01-hq.webp`,
                 alt: "TPay Corporate dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-02.webp`,
+                src: `${A}/tpay-final-02-hq.webp`,
                 alt: "TPay Personal dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-03.webp`,
+                src: `${A}/tpay-final-03-hq.webp`,
                 alt: "TPay wallet dashboard",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-04.webp`,
+                src: `${A}/tpay-final-04-hq.webp`,
                 alt: "Dashboard screen 4",
                 framed: true,
               },
@@ -1078,12 +1078,12 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-05.webp`,
+                src: `${A}/tpay-final-05-hq.webp`,
                 alt: "Payments screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-06.webp`,
+                src: `${A}/tpay-final-06-hq.webp`,
                 alt: "Payments screen 2",
                 framed: true,
               },
@@ -1100,12 +1100,12 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-07.webp`,
+                src: `${A}/tpay-final-07-hq.webp`,
                 alt: "Invoicing screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-08.webp`,
+                src: `${A}/tpay-final-08-hq.webp`,
                 alt: "Invoicing screen 2",
                 framed: true,
               },
@@ -1122,12 +1122,12 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-09.webp`,
+                src: `${A}/tpay-final-09-hq.webp`,
                 alt: "Transaction history screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-10.webp`,
+                src: `${A}/tpay-final-10-hq.webp`,
                 alt: "Transaction history screen 2",
                 framed: true,
               },
@@ -1144,17 +1144,17 @@ const tpay: CaseStudyData = {
             layout: "full",
             images: [
               {
-                src: `${A}/tpay-final-12.webp`,
+                src: `${A}/tpay-final-12-hq.webp`,
                 alt: "Auth screen 1",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-13.webp`,
+                src: `${A}/tpay-final-13-hq.webp`,
                 alt: "Auth screen 2",
                 framed: true,
               },
               {
-                src: `${A}/tpay-final-14.webp`,
+                src: `${A}/tpay-final-14-hq.webp`,
                 alt: "Auth screen 3",
                 framed: true,
               },
@@ -1221,7 +1221,7 @@ const thr: CaseStudyData = {
       "The problems identified were informed by feedback from internal teams, a review of recurring people operations tasks, and an audit of the existing interface.",
     screenshots: [
       {
-        src: `${A}/THR-preview.webp`,
+        src: `${A}/THR-preview-hq.webp`,
         alt: "THR dashboard screen",
       },
       {
@@ -1287,7 +1287,7 @@ const thr: CaseStudyData = {
       },
     ],
     visual: {
-      src: `${A}/THR-preview.webp`,
+      src: `${A}/THR-preview-hq.webp`,
       alt: "THR dashboard",
     },
   },
@@ -1302,32 +1302,32 @@ const thr: CaseStudyData = {
             layout: "stack",
             images: [
               {
-                src: `${A}/thr-final-01.webp`,
+                src: `${A}/thr-final-01-hq.webp`,
                 alt: "THR leave request dashboard",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-02.webp`,
+                src: `${A}/thr-final-02-hq.webp`,
                 alt: "THR update password settings",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-03.webp`,
+                src: `${A}/thr-final-03-hq.webp`,
                 alt: "THR payroll approvals",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-04.webp`,
+                src: `${A}/thr-final-04-hq.webp`,
                 alt: "THR leave details",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-05.webp`,
+                src: `${A}/thr-final-05-hq.webp`,
                 alt: "THR resource bank",
                 framed: true,
               },
               {
-                src: `${A}/thr-final-06.webp`,
+                src: `${A}/thr-final-06-hq.webp`,
                 alt: "THR structured payroll settings",
                 framed: true,
               },

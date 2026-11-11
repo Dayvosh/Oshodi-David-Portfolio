@@ -869,6 +869,23 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   height: auto;
   aspect-ratio: 228 / 464;
 }
+@media (min-width: 901px) {
+  .case-visual--banking,
+  .case-visual--truck {
+    height: 629px;
+    aspect-ratio: auto;
+  }
+  .case-visual .banking-phone {
+    width: auto;
+    height: 88%;
+    aspect-ratio: 230 / 470;
+  }
+  .case-visual .truck-image-wrap {
+    width: auto;
+    height: 88%;
+    aspect-ratio: 228 / 464;
+  }
+}
 
 .case-meta {
   display: grid;
