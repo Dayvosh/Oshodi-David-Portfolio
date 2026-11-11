@@ -412,7 +412,7 @@ function Work() {
             className={tab === "showcase" ? "selected" : ""}
             onClick={() => setTab("showcase")}
           >
-            UI Showcase
+            Play Ground
           </button>
         </div>
       </div>

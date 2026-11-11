@@ -35,7 +35,7 @@ html.dark .app {
   --page: #171513;
   --card: #211f1d;
   --primary: #fff;
-  --secondary: #aaa;
+  --secondary: #b8b8b8;
   --soft: #2b2826;
   --border: #2e2b29;
   --panel: #26231f;
@@ -283,8 +283,17 @@ main {
   object-fit: contain;
 }
 @media (max-width: 760px) {
-  .showcase-grid { gap: 8px; margin-inline: -2px; }
-  .showcase-tile { border-radius: 10px; }
+  .showcase-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-inline: 0;
+  }
+  .showcase-tile {
+    aspect-ratio: auto;
+    height: 420px;
+    border-radius: 10px;
+  }
 }
 .project-card { padding: 4px 4px 8px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
 .project-card-link { display: block; }
@@ -526,7 +535,7 @@ footer { position: relative; z-index: 30; padding: 100px 100px 56px; background:
   .hero-title > p { font-size: 21px; line-height: 32px; letter-spacing: -1px; }
   .hero h1 { max-width: 420px; font-size: clamp(56px, 18vw, 82px); line-height: .94; }
   .hero-copy { margin-top: 32px; gap: 32px; }
-  .hero-copy > p { max-width: 480px; font-weight: 500; }
+  .hero-copy > p { max-width: 480px; font-weight: 500; font-size: 15px; }
   .hero-actions { transform: none; flex-direction: column; align-items: stretch; }
   .hero-actions a, .hero-actions button { width: 100%; }
   .human { left: auto; right: 20px; bottom: 145px; width: 81px; height: 71px; }
@@ -652,8 +661,8 @@ html.dark .case-app {
   --page: #171513;
   --card: #211f1d;
   --primary: #fff;
-  --secondary: #aaa;
-  --body: #b5b0ab;
+  --secondary: #b8b8b8;
+  --body: #b8b8b8;
   --emphasis: #d6d1cc;
   --soft: #2b2826;
   --muted: #8a8580;
@@ -755,6 +764,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 40px;
+  font-weight: 600;
   line-height: 48px;
   letter-spacing: -.03em;
 }
@@ -885,6 +895,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 32px;
+  font-weight: 600;
   line-height: 40px;
   letter-spacing: -.03em;
 }
@@ -1023,6 +1034,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 20px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1030,13 +1042,14 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   display: flex;
   flex-direction: column;
   gap: 22px;
-  margin-top: 34px;
+  margin-top: 31px;
 }
 .case-core-problem h4 {
   margin: 0;
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 15px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1103,6 +1116,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1176,6 +1190,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 20px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1185,6 +1200,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1261,6 +1277,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', Arial, sans-serif;
   font-size: 20px;
+  font-weight: 600;
   line-height: 28px;
   letter-spacing: 0;
 }
@@ -1309,10 +1326,11 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 .case-final-illustrations + .case-final-blocks { margin-top: 80px; }
 .case-final-improvements { margin-top: 24px; }
 .case-final-improvements h4 {
-  margin: 0;
+  margin: 0 0 8px;
   color: var(--primary);
   font-family: 'Geist', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.03em;
 }
@@ -1425,6 +1443,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 32px;
+  font-weight: 600;
   line-height: 40px;
   letter-spacing: -.03em;
 }
@@ -1457,6 +1476,7 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   color: var(--primary);
   font-family: 'Geist', sans-serif;
   font-size: 24px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: -.72px;
 }
@@ -1660,6 +1680,17 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
   .case-conclusion { padding: 40px 0 80px; }
   .case-more { padding: 40px 0 80px; }
   .case-title { font-size: 32px; line-height: 40px; }
+  .case-subtext,
+  .case-about-copy p,
+  .case-problem-copy p,
+  .case-goals-copy p,
+  .case-design-step-copy p,
+  .case-final-block-copy,
+  .case-final-group-copy,
+  .case-conclusion-body p {
+    font-size: 15px;
+    line-height: 24px;
+  }
   .case-about-title,
   .case-problem-title,
   .case-goals-title,
@@ -1740,9 +1771,9 @@ html.dark .case-app .case-side-nav nav a.active:hover { color: #ff7a4d; }
 }
 
 @media (max-width: 600px) {
-  .case-meta { grid-template-columns: 1fr; }
+  .case-meta { grid-template-columns: 1fr 1fr; }
   .case-meta-card, .case-meta-wide { grid-column: auto; grid-row: auto; min-height: 76px; }
-  .case-meta-wide { min-height: 0; }
+  .case-meta-wide { grid-column: 1 / -1; min-height: 0; }
   .case-more-grid { grid-template-columns: 1fr; }
   .case-design-flow-panel { grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px 10px; }
   .case-design-flow-steps { max-width: 100%; margin-top: 16px; }
