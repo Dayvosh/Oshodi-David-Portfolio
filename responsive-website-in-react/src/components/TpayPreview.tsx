@@ -1,4 +1,4 @@
-const A = '/assets'
+const A = "/assets"
 
 export default function TpayPreview() {
   return (

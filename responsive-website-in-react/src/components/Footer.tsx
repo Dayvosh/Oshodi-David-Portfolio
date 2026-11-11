@@ -11,8 +11,9 @@ export default function Footer() {
             you're building
           </h2>
           <p>
-            I look forward to working with you, please feel free to send me an
-            email
+            I look forward to working with you, please feel free{" "}
+            <br className="mobile-br" />
+            to send me an email
           </p>
         </div>
         <a className="email-pill" href="mailto:davidoshodi656@gmail.com">
