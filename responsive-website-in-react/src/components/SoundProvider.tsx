@@ -35,48 +35,7 @@ export function useSound() {
   return useContext(SoundContext)
 }
 
-const CLICK_SELECTOR = [
-  "button",
-  '[role="button"]',
-  ".email-button",
-  ".email-pill",
-  ".resume-button",
-  ".case-live-button",
-  ".case-view-insights",
-  ".project-card-link",
-  ".case-more-card-link",
-  ".side-nav nav a",
-  ".mobile-menu nav a",
-  ".case-side-nav nav a",
-  ".case-back",
-  ".theme-switch button",
-  ".tabs button",
-  "footer a",
-  ".socials a",
-].join(",")
-
-function isInternalRouteLink(anchor: HTMLAnchorElement, event: MouseEvent) {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-    return false
-  }
-  if (anchor.target === "_blank" || anchor.hasAttribute("download")) {
-    return false
-  }
-
-  const href = anchor.getAttribute("href")
-  if (!href) return false
-  if (
-    href.startsWith("#") ||
-    href.startsWith("mailto:") ||
-    href.startsWith("tel:") ||
-    href.startsWith("http") ||
-    href.startsWith("//")
-  ) {
-    return false
-  }
-
-  return href.startsWith("/")
-}
+const CLICK_SELECTOR = 'a, button, [role="button"]'
 
 export default function SoundProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(true)
@@ -162,12 +121,16 @@ export default function SoundProvider({ children }: { children: ReactNode }) {
       const element = target?.closest(CLICK_SELECTOR) as HTMLElement | null
       if (!element) return
       if (element.closest(".sound-switch")) return
-      if (
-        element instanceof HTMLAnchorElement &&
-        isInternalRouteLink(element, event)
-      ) {
-        return
+
+      const anchor = element.closest("a[href]")
+      if (anchor) {
+        const href = anchor.getAttribute("href") ?? ""
+        if (href.startsWith("/") && !href.startsWith("//")) {
+          const path = href.split("#")[0].split("?")[0] || "/"
+          if (path !== window.location.pathname) return
+        }
       }
+
       playSound("click")
     }
 
