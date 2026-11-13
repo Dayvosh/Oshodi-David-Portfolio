@@ -229,7 +229,7 @@ function Hero() {
           <a
             className="resume-button"
             id="resume"
-            href="https://drive.google.com/file/d/1H18gr6KmXAM37cn8rWu5kASpTRfgNOaa/view?usp=sharing"
+            href="https://drive.google.com/file/d/1S3TY9oaGrK5dnrnB1wGExrSHrXrE7dPZ/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
