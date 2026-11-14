@@ -63,7 +63,7 @@ const projects: Project[] = [
     year: "2025",
     category: "Human Resource (HR)",
     description:
-      "Redesigning the digital experience for a logistics platform aiming at improving the day to day for truck drivers",
+      "Simplifying workforce management through an integrated HR and payroll platform",
     theme: "thr",
     href: "/work/thr",
   },
