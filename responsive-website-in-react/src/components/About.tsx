@@ -29,7 +29,7 @@ const hobbyImages = [
 function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
-      <a className="portrait" href="/#top" aria-label="Back to top">
+      <a className="portrait" href="/" aria-label="Back to top">
         <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <nav>
@@ -61,7 +61,7 @@ function MobileHeader({
 }) {
   return (
     <header className="mobile-header">
-      <a className="portrait" href="/#top" aria-label="Back to top">
+      <a className="portrait" href="/" aria-label="Back to top">
         <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <div className="mobile-actions">
@@ -116,7 +116,7 @@ function MobileMenu({ open, onClose }: MobileMenuProps) {
       <div className="mobile-menu-top">
         <a
           className="portrait"
-          href="/#top"
+          href="/"
           aria-label="Back to top"
           onClick={onClose}
         >

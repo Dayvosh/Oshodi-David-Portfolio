@@ -6,7 +6,7 @@
           <img src={`${A}/HCD.svg`} alt="Human Centered Design" />
         </div> */
 import Link from "next/link"
-import { useEffect, useState, type ReactNode } from "react"
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react"
 import BankingShowcase from "./BankingShowcase"
 import Footer from "./Footer"
 import Icon from "./Icon"
@@ -69,10 +69,25 @@ const projects: Project[] = [
   },
 ]
 
+function scrollToTop(event: MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault()
+  window.history.replaceState(
+    null,
+    "",
+    window.location.pathname + window.location.search,
+  )
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}
+
 function SideNav() {
   return (
     <aside className="side-nav" aria-label="Primary navigation">
-      <a className="portrait" href="#top" aria-label="Back to top">
+      <a
+        className="portrait"
+        href="/"
+        aria-label="Back to top"
+        onClick={scrollToTop}
+      >
         <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <nav>
@@ -104,7 +119,12 @@ function MobileHeader({
 }) {
   return (
     <header className="mobile-header">
-      <a className="portrait" href="#top" aria-label="Back to top">
+      <a
+        className="portrait"
+        href="/"
+        aria-label="Back to top"
+        onClick={scrollToTop}
+      >
         <img src={`${A}/portrait.webp`} alt="Oshodi David" />
       </a>
       <div className="mobile-actions">
@@ -159,9 +179,12 @@ function MobileMenu({ open, onClose }: MobileMenuProps) {
       <div className="mobile-menu-top">
         <a
           className="portrait"
-          href="#top"
+          href="/"
           aria-label="Back to top"
-          onClick={onClose}
+          onClick={(event) => {
+            onClose()
+            scrollToTop(event)
+          }}
         >
           <img src={`${A}/portrait.webp`} alt="Oshodi David" />
         </a>
@@ -432,6 +455,16 @@ function Work() {
 export default function App() {
   const { dark, setDark } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    if (window.location.hash === "#top") {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      )
+    }
+  }, [])
 
   return (
     <div className="app" id="top">

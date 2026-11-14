@@ -1,4 +1,17 @@
+"use client"
+
+import type { MouseEvent } from "react"
 import Icon from "./Icon"
+
+function scrollToTop(event: MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault()
+  window.history.replaceState(
+    null,
+    "",
+    window.location.pathname + window.location.search,
+  )
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}
 
 export default function Footer() {
   return (
@@ -58,7 +71,7 @@ export default function Footer() {
         <span>
           <Icon file="cdbb2.svg" /> OSHODI DAVID. ALL RIGHTS RESERVED
         </span>
-        <a href="#top">
+        <a href="/" onClick={scrollToTop}>
           <Icon file="6ad45.svg" /> Back to top
         </a>
       </div>
