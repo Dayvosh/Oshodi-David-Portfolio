@@ -188,15 +188,26 @@ function Gallery({
     let raf = 0
     let last = performance.now()
     let visible = true
+    let position = viewport.scrollLeft
     const speed = 24
 
     const loop = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05)
       last = now
-      if (visible && !drag.current.active) {
-        viewport.scrollLeft += speed * dt
-        const set = viewport.scrollWidth / 3
-        if (viewport.scrollLeft >= set) viewport.scrollLeft -= set
+      if (visible) {
+        if (drag.current.active) {
+          position = viewport.scrollLeft
+        } else {
+          if (Math.abs(viewport.scrollLeft - position) > 2) {
+            position = viewport.scrollLeft
+          }
+          const set = viewport.scrollWidth / 3
+          position += speed * dt
+          if (set > 0 && position >= set) position -= set
+          viewport.scrollLeft = position
+        }
+      } else {
+        position = viewport.scrollLeft
       }
       raf = requestAnimationFrame(loop)
     }
@@ -204,6 +215,7 @@ function Gallery({
     const observer = new IntersectionObserver(
       (entries) => {
         visible = entries[0]?.isIntersecting ?? true
+        position = viewport.scrollLeft
         last = performance.now()
       },
       { rootMargin: "200px" },
